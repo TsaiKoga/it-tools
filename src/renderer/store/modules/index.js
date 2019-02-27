@@ -9,6 +9,7 @@ const modules = {}
 files.keys().forEach(key => {
   if (key === './index.js') return
   modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+  modules[key.replace(/(\.\/|\.js)/g, '')]['namespaced'] = true
 })
 
 export default modules

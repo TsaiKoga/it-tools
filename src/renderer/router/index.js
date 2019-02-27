@@ -11,8 +11,9 @@ export default new Router({
       component: require('@/components/LandingPage').default
     },
     {
-      path: '*',
-      redirect: '/'
+      path: '/regex-page',
+      name: 'regex-page',
+      component: require('@/components/RegexPage').default
     }
   ]
 })
