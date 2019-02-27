@@ -8,6 +8,9 @@
           <li>
             <router-link :to="{name: 'regex-page'}">Regex Tool</router-link>
           </li>
+          <li>
+            <router-link :to="{name: 'timestamp-page'}">Timestamp Tool</router-link>
+          </li>
         </ul>
       </aside>
 
@@ -18,6 +21,9 @@
         <ul class="menu-list">
           <li>
             <router-link :to="{name: 'regex-page'}">R</router-link>
+          </li>
+          <li>
+            <router-link :to="{name: 'timestamp-page'}">T</router-link>
           </li>
         </ul>
       </aside>
@@ -52,7 +58,8 @@ aside {
   height: 100vh;
   margin-top: 0px;
   padding: 10px 0px;
-  background: linear-gradient(to bottom, #36648B, white 80%, #779a73);
+  // background: linear-gradient(to bottom, #36648B, white 80%, #779a73);
+  background: #333333;
 
   p {
     font-size: 2em;

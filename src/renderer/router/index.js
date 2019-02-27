@@ -14,6 +14,11 @@ export default new Router({
       path: '/regex-page',
       name: 'regex-page',
       component: require('@/components/RegexPage').default
+    },
+    {
+      path: '/timestamp-page',
+      name: 'timestamp-page',
+      component: require('@/components/TimestampPage').default
     }
   ]
 })
