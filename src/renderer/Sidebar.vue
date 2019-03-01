@@ -11,6 +11,9 @@
           <li>
             <router-link :to="{name: 'timestamp-page'}">Timestamp Tool</router-link>
           </li>
+          <li>
+            <router-link :to="{name: 'color-box-page'}">Color Box</router-link>
+          </li>
         </ul>
       </aside>
 
@@ -24,6 +27,9 @@
           </li>
           <li>
             <router-link :to="{name: 'timestamp-page'}">T</router-link>
+          </li>
+          <li>
+            <router-link :to="{name: 'color-box-page'}">C</router-link>
           </li>
         </ul>
       </aside>
@@ -60,6 +66,7 @@ aside {
   padding: 10px 0px;
   // background: linear-gradient(to bottom, #36648B, white 80%, #779a73);
   background: #333333;
+  z-index: 9000;
 
   p {
     font-size: 2em;
@@ -74,9 +81,11 @@ aside {
     margin: 0 0;
     padding: 15px 20px;
     list-style: none;
-    font-size: 2em;
+    font-size: 1em;
     width: 100%;
-
+    &:hover {
+      background-color: #566573;
+    }
     a {
       padding-bottom: 11px !important;
       width: 100%;

@@ -19,6 +19,11 @@ export default new Router({
       path: '/timestamp-page',
       name: 'timestamp-page',
       component: require('@/components/TimestampPage').default
+    },
+    {
+      path: '/color-box-page',
+      name: 'color-box-page',
+      component: require('@/components/ColorBoxPage').default
     }
   ]
 })
