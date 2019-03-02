@@ -5,15 +5,15 @@
           IT Tools
         </p>
         <ul class="menu-list">
-          <li>
-            <router-link :to="{name: 'regex-page'}">Regex Tool</router-link>
-          </li>
-          <li>
-            <router-link :to="{name: 'timestamp-page'}">Timestamp Tool</router-link>
-          </li>
-          <li>
-            <router-link :to="{name: 'color-box-page'}">Color Box</router-link>
-          </li>
+          <router-link :to="{name: 'regex-page'}">
+            <li>Regex Tool</li>
+          </router-link>
+          <router-link :to="{name: 'timestamp-page'}">
+            <li>Timestamp Converter</li>
+          </router-link>
+          <router-link :to="{name: 'color-box-page'}">
+            <li>Color Box</li>
+          </router-link>
         </ul>
       </aside>
 
@@ -22,15 +22,15 @@
           IT
         </p>
         <ul class="menu-list">
-          <li>
-            <router-link :to="{name: 'regex-page'}">R</router-link>
-          </li>
-          <li>
-            <router-link :to="{name: 'timestamp-page'}">T</router-link>
-          </li>
-          <li>
-            <router-link :to="{name: 'color-box-page'}">C</router-link>
-          </li>
+          <router-link :to="{name: 'regex-page'}">
+            <li>R</li>
+          </router-link>
+          <router-link :to="{name: 'timestamp-page'}">
+            <li>T</li>
+          </router-link>
+          <router-link :to="{name: 'color-box-page'}">
+            <li>C</li>
+          </router-link>
         </ul>
       </aside>
     </transition>
@@ -77,6 +77,13 @@ aside {
     cursor: pointer;
   }
 
+  a {
+    padding-bottom: 11px !important;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+  }
+
   li {
     margin: 0 0;
     padding: 15px 20px;
@@ -85,12 +92,6 @@ aside {
     width: 100%;
     &:hover {
       background-color: #566573;
-    }
-    a {
-      padding-bottom: 11px !important;
-      width: 100%;
-      text-decoration: none;
-      color: #fff;
     }
   }
 }

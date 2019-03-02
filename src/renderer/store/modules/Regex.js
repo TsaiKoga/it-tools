@@ -41,8 +41,8 @@ const mutations = {
             matchContext.push(reGroup[0])
             beginPos = reGroup['index'] + reGroup[0].length
           }
-          if (beginPos !== result['input'].length - 1) {
-            matchContext.push(result['input'].slice(beginPos, result['input'].length - 1))
+          if (beginPos !== result['input'].length) {
+            matchContext.push(result['input'].slice(beginPos, result['input'].length))
           }
           console.log(matchContext)
           state.regexResult = { status: 1, content: [], matchContext: matchContext }
@@ -57,8 +57,8 @@ const mutations = {
             beginPos = reGroup['index'] + reGroup[0].length
             matchGroups.push(reGroup)
           }
-          if (beginPos !== result['input'].length - 1) {
-            matchContext.push(result['input'].slice(beginPos, result['input'].length - 1))
+          if (beginPos !== result['input'].length) {
+            matchContext.push(result['input'].slice(beginPos, result['input'].length))
           }
           state.regexResult = { status: 1, content: matchGroups, matchContext: matchContext }
         }
