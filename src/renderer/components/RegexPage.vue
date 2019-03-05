@@ -1,74 +1,88 @@
 <template>
   <div id="regex-page">
-    <div class="regex-inner">
-      <div class="regex-top">
-        <div class="regex-top-label">
-          <label>Your regular expression:</label>
-        </div>
-        <div class="regex-top-fields">
-          <div class="regex-diagonal">/</div>
-          <div class="regex-diagnoal-input">
-            <input type="text" name="regex-exp" @input='execRegex' :value='regexExp' />
+    <tabs :tabsNav="tabsNav">
+      <div class="regex-inner" v-show="currentTab === 'Home'">
+        <div class="regex-top">
+          <div class="regex-top-label">
+            <label>Your regular expression:</label>
           </div>
-
-          <div class="regex-diagonal">/</div>
-          <div>
-            <input type="text" name="regex-opt" @input="execRegex" :value="regexOpt" />
-          </div>
-        </div>
-
-      </div>
-
-      <div class="regex-bottom">
-        <div class="regex-content">
-          <label>Your test string: </label>
-          <textarea class="regex-textarea" name="regex-content" @input="execRegex" :value='regexCont'></textarea>
-        </div>
-
-        <div class="result-content result-init" v-if="regexResult['status'] == 0">
-          {{ regexResult['content'] }}
-        </div>
-
-
-        <div class="result-content result-match" v-if="regexResult['status'] == 1">
-          <div>
-            <div class="regex-match-btn">
-              <label>Match Result:</label>
-              <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">Clean Fields</a>
+          <div class="regex-top-fields">
+            <div class="regex-diagonal">/</div>
+            <div class="regex-diagnoal-input">
+              <input type="text" name="regex-exp" @input='execRegex' :value='regexExp' />
             </div>
-            <div class="result-item">
-              <span v-for="(cont, indx) in regexResult['matchContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
+
+            <div class="regex-diagonal">/</div>
+            <div>
+              <input type="text" name="regex-opt" @input="execRegex" :value="regexOpt" />
             </div>
           </div>
-          <ul v-for="(itemGroup, index) in regexResult['content']">
-            <li>
-              <div>
-                <label>Match Group {{ index + 1 }}:</label>
-                <div class="result-item">
-                  <ul v-for="(item, i) in itemGroup">
-                    <li v-if="i !== 0">{{ i }}: {{ item }}</li>
-                  </ul>
-                </div>
+
+        </div>
+
+        <div class="regex-bottom">
+          <div class="regex-content">
+            <label>Your test string: </label>
+            <textarea class="regex-textarea" name="regex-content" @input="execRegex" :value='regexCont'></textarea>
+          </div>
+
+          <div class="result-content result-init" v-if="regexResult['status'] == 0">
+            {{ regexResult['content'] }}
+          </div>
+
+
+          <div class="result-content result-match" v-if="regexResult['status'] == 1">
+            <div>
+              <div class="regex-match-btn">
+                <label>Match Result:</label>
+                <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">Clean Fields</a>
               </div>
-            </li>
-          </ul>
-        </div>
+              <div class="result-item">
+                <span v-for="(cont, indx) in regexResult['matchContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
+              </div>
+            </div>
+            <ul v-for="(itemGroup, index) in regexResult['content']">
+              <li>
+                <div>
+                  <label>Match Group {{ index + 1 }}:</label>
+                  <div class="result-item">
+                    <ul v-for="(item, i) in itemGroup">
+                      <li v-if="i !== 0">{{ i }}: {{ item }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-        <div class="result-content result-not-match" v-if="regexResult['status'] == -1">
-          {{ regexResult['content'] }}
+          <div class="result-content result-not-match" v-if="regexResult['status'] == -1">
+            {{ regexResult['content'] }}
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="regex-inner" v-show="currentTab !== 'Home'">
+        <regex-help></regex-help>
+      </div>
+    </tabs>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import Tabs from './../Tabs'
+import RegexHelp from './RegexPage/RegexHelp'
 
 export default {
   name: 'regex-page',
+  components: {
+    'tabs': Tabs,
+    'regex-help': RegexHelp
+  },
   computed: {
     ...mapState('Regex', {
+      tabsNav: state => state.tabs,
+      currentTab: state => state.currentTab,
       regexExp: state => state.regexExp,
       regexOpt: state => state.regexOpt,
       regexCont: state => state.regexCont,
@@ -76,6 +90,7 @@ export default {
   },
   methods: {
     ...mapActions('Regex', [
+      'setNav',
       'cleanFields',
       'regexMatch'
     ]),
@@ -84,6 +99,9 @@ export default {
     },
     execRegex (event) {
       this.regexMatch(event)
+    },
+    updateNav (title, index) {
+      this.setNav({ title: title, index: index })
     }
 
   }
@@ -121,7 +139,7 @@ export default {
     -webkit-flex: 1;
     flex: 1;
     padding: 2vh 1vw;
-    width: 95vw;
+    width: 93vw;
   }
   .regex-top {
     height: 15vh;
@@ -171,7 +189,7 @@ export default {
 
   .regex-bottom {
     padding-top: 3vh;
-    height: 74vh;
+    height: 64vh;
   }
   .regex-bottom {
     display: -webkit-flex;
@@ -205,7 +223,7 @@ export default {
     }
   }
   .regex-bottom .regex-textarea {
-    height: 60vh;
+    height: 55vh;
     width: 40vw;
     padding: 1vh 1vw;
     font-size: 3vh;
@@ -224,19 +242,19 @@ export default {
     flex: 1;
     text-align: center;
     margin-top: 5vh;
-    height: 60vh;
+    height: 55vh;
   }
   .result-init {
     border: 10px solid #779a73;
     background-color: #cdf3c9;
     color: #283a26;
-    line-height: 60vh;
+    line-height: 55vh;
   }
   .result-not-match {
     border: 10px solid #EEA2AD;
     background-color: #EED5D2;
     color: #EE6A50;
-    line-height: 60vh;
+    line-height: 55vh;
   }
   .result-match {
     text-align: left;

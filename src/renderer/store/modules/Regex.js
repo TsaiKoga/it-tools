@@ -1,4 +1,9 @@
 const state = {
+  tabs: [
+    { title: 'Home', isActive: true },
+    { title: 'Help', isActive: false }
+  ],
+  currentTab: 'Home',
   regexExp: '',
   regexOpt: '',
   regexCont: '',
@@ -6,6 +11,16 @@ const state = {
 }
 
 const mutations = {
+  SET_NAV (state, payload) {
+    state.tabs.forEach((tabs, i) => {
+      if (i === payload.index) {
+        state.tabs[payload.index]['isActive'] = true
+        state.currentTab = payload.title
+      } else {
+        state.tabs[i]['isActive'] = false
+      }
+    })
+  },
   CLEAN_FIELDS (state) {
     state.regexExp = ''
     state.regexOpt = ''
@@ -80,6 +95,9 @@ const mutations = {
 }
 
 const actions = {
+  setNav ({ commit }, payload) {
+    commit('SET_NAV', payload)
+  },
   cleanFields ({ commit }) {
     commit('CLEAN_FIELDS')
   },
