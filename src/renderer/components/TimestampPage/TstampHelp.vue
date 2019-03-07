@@ -1,0 +1,163 @@
+<template>
+  <div class="tstamp-help">
+    <h2></h2>
+
+    <div class="doc">
+      <table>
+        <tbody>
+          <tr>
+            <td class="title">Swift</td>
+            <td>
+              <pre><span class="cls-var">NSDate</span>().<span class="var">timeIntervalSince1970</span></pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Go</td>
+            <td>
+<pre><span class="key-method">import</span> (<span class="str">"time"</span>)
+<span class="method">int32</span>(<span class="cls-var">time</span>.<span class="method">Now</span>().<span class="method">Unix</span>())</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2" class="title">Java</td>
+            <td>
+              <pre><div class="comment">// pure java</div>(<span class="key-method">int</span>) (<span class="cls-var">System</span>.<span class="method">currentTimeMillis</span>() / <span class="int">1000</span>)</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <pre><div class="comment">// joda</div>(<span class="key-method">int</span>) (<span class="cls-var">DateTime</span>.<span class="method">now</span>().<span class="method">getMillis</span>() / <span class="int">1000</span>)</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Javascript</td>
+            <td>
+              <pre><span class="cls-var">Math</span>.<span class="method">round</span>(<span class="key-method">new</span> <span class="cls-var">Date</span>() / <span class="int">1000</span>)</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Objective-C</td>
+            <td>
+              <pre>[[<span class="cls-var">NSDate</span> date] <span class="var">timeIntervalSince1970</span>]</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">MySQL</td>
+            <td>
+              <pre><span class="cls-var">SELECT</span> <span class="method">unix_timestamp</span>(<span class="method">now</span>())</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2" class="title">PHP</td>
+            <td>
+              <pre><div class="comment">// pure php</div><span class="method">time</span>()</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <pre><div class="comment">// Carbon\Carbon</div><span class="cls-var">Carbon</span>::<span class="method">now</span>()->timestamp</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Python</td>
+            <td>
+              <pre><span class="key-method">import</span> <span class="var">time</span>
+<span class="var">time</span>.<span class='method'>time</span>()</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Ruby</td>
+            <td>
+              <pre><span class="cls-var">Time</span>.now.to_i</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Shell</td>
+            <td>
+              <pre><span class="key-method">date</span> +%s</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">Groovy</td>
+            <td>
+              <pre>(<span class="key-method">new</span> <span class="cls-var">Date</span>().time / <span class='int'>1000</span>).<span class="method">intValue</span>()</pre>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="title">.NET/C#</td>
+            <td>
+              <pre>(<span class="cls-var">DateTime</span>.Now.<span class="method">ToUniversalTime</span>().Ticks - <span class="int">621355968000000000</span>) / <span class="int">10000000</span></pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'tstamp-help'
+  }
+</script>
+
+<style lang="scss" scoped>
+  .tstamp-help {
+    .doc {
+      display: flex;
+      display: -webkit-flex;
+      text-align: center;
+      table {
+        text-align: left;
+        margin: auto auto;
+        width: 80vw;
+      }
+      table tr td {
+        padding: 1px 10px;
+        border: 1px solid #cccccc;
+      }
+      table tr td.title {
+        color: #222222;
+        font-size: 1em;
+      }
+      table tr td pre {
+        background-color: #222222;
+        color: white;
+        border-radius: 2px;
+        padding: 2px 10px;
+      }
+      table tr td .comment {
+        color: #777777;
+      }
+      table tr td .str {
+        color: #1ABC9C;
+      }
+      table tr td .method {
+        color: #5DADE2;
+      }
+      table tr td .int {
+        color: #F5B041;
+      }
+      table tr td .var {
+        color:  #E74C3C;
+      }
+      table tr td .cls-var {
+        color: #F7DC6F;
+      }
+      table tr td .key-method {
+        color: #A569BD;
+      }
+    }
+  }
+</style>

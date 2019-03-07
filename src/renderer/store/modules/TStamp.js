@@ -1,6 +1,11 @@
 import * as moment from 'moment'
 
 const state = {
+  tabs: [
+    { title: 'Home', isActive: true },
+    { title: 'Help', isActive: false }
+  ],
+  currentTab: 'Home',
   timestampField: '',
   datetimeField: '',
   unit: 1,
@@ -9,6 +14,17 @@ const state = {
 }
 
 const mutations = {
+  SET_NAV (state, payload) {
+    state.tabs.forEach((tabs, i) => {
+      if (i === payload.index) {
+        state.tabs[payload.index]['isActive'] = true
+        state.currentTab = payload.title
+      } else {
+        state.tabs[i]['isActive'] = false
+      }
+    })
+  },
+
   RESET_INPUT (state) {
     state.timestampField = ''
     state.datetimeField = ''
@@ -57,6 +73,10 @@ const mutations = {
 }
 
 const actions = {
+  setNav ({ commit }, payload) {
+    commit('SET_NAV', payload)
+  },
+
   resetInput ({ commit }) {
     commit('RESET_INPUT')
   },
