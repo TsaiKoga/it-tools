@@ -38,20 +38,21 @@
                 <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">Clean Fields</a>
               </div>
               <div class="result-item">
-                <span v-for="(cont, indx) in regexResult['matchContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
+                <span v-for="(cont, indx) in regexResult['matchedContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
               </div>
             </div>
-            <ul v-for="(itemGroup, index) in regexResult['content']">
-              <li>
-                <div>
-                  <label>Match Group {{ index + 1 }}:</label>
-                  <div class="result-item">
-                    <ul v-for="(item, i) in itemGroup">
-                      <li v-if="i !== 0">{{ i }}: {{ item }}</li>
+            <ul v-if="regexResult['content'].length > 0">
+              <label>Match Groups:</label>
+              <div class="match-groups">
+                <li v-for="(itemGroup, index) in regexResult['content']">
+                  <div class="group-item">
+                    <label>Match Group {{ index + 1 }}:</label>
+                    <ul>
+                      <li v-if="i !== 0" v-for="(item, i) in itemGroup">{{ i }}: {{ item }}</li>
                     </ul>
                   </div>
-                </div>
-              </li>
+                </li>
+              </div>
             </ul>
           </div>
 
@@ -261,6 +262,27 @@ export default {
     overflow-y: scroll;
     ul {
       list-style: none;
+      .match-groups {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border: 1px solid #ddd;
+        padding: 15px;
+        background-color: #000;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .match-groups label {
+        font-family: futura,helvetica,arial;
+        font-variant: small-caps;
+        color: #84bde7;
+        font-size: 12px;
+        margin: 0;
+        height: 0vh;
+      }
+      .match-groups .group-item {
+        font-size: 0.9em;
+        margin-bottom: 2vh;
+      }
     }
     .result-item {
       white-space: pre-wrap;

@@ -38,6 +38,24 @@ const mutations = {
       state.regexCont = target.value
     }
 
+    // Main Match Method:
+    function matchContext (regexGlobal, result, flag) {
+      let matchedContext = []
+      let matchedGroups = []
+      let reGroup = []
+      let beginPos = 0
+      while ((reGroup = regexGlobal.exec(result['input'])) !== null) {
+        matchedContext.push(reGroup['input'].slice(beginPos, reGroup['index']))
+        matchedContext.push(reGroup[0])
+        beginPos = reGroup['index'] + reGroup[0].length
+        if (flag > 1) matchedGroups.push(reGroup)
+      }
+      if (beginPos !== result['input'].length) {
+        matchedContext.push(result['input'].slice(beginPos, result['input'].length))
+      }
+      state.regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
+    }
+
     // Do the Regex Match:
     try {
       if (state.regexCont !== '' && state.regexExp !== '') {
@@ -47,35 +65,19 @@ const mutations = {
 
         if (result === null) {
           state.regexResult = { status: -1, content: 'No matches ...' }
-        } else if (result.length === 1) {
-          let matchContext = []
-          let reGroup = []
-          let beginPos = 0
-          while ((reGroup = reGb.exec(result['input'])) !== null) {
-            matchContext.push(reGroup['input'].slice(beginPos, reGroup['index']))
-            matchContext.push(reGroup[0])
-            beginPos = reGroup['index'] + reGroup[0].length
-          }
-          if (beginPos !== result['input'].length) {
-            matchContext.push(result['input'].slice(beginPos, result['input'].length))
-          }
-          console.log(matchContext)
-          state.regexResult = { status: 1, content: [], matchContext: matchContext }
         } else {
-          let matchContext = []
-          let matchGroups = []
-          let reGroup = []
-          let beginPos = 0
-          while ((reGroup = reGb.exec(result['input'])) !== null) {
-            matchContext.push(reGroup['input'].slice(beginPos, reGroup['index']))
-            matchContext.push(reGroup[0])
-            beginPos = reGroup['index'] + reGroup[0].length
-            matchGroups.push(reGroup)
+          if (state.regexExp === '()') {
+            let matchedContext = []
+            state.regexCont.split('').forEach((val, index) => {
+              matchedContext.push(val)
+              matchedContext.push('')
+            })
+            let matchedGroups = [...Array(state.regexCont.length)].map(() => [state.regexCont, ''])
+            console.log(matchedGroups)
+            state.regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
+          } else {
+            matchContext(reGb, result, result.length)
           }
-          if (beginPos !== result['input'].length) {
-            matchContext.push(result['input'].slice(beginPos, result['input'].length))
-          }
-          state.regexResult = { status: 1, content: matchGroups, matchContext: matchContext }
         }
       } else {
         state.regexResult = { status: 0, content: "Here's the result." }
@@ -90,7 +92,6 @@ const mutations = {
         state.regexResult = { status: -1, content: 'No Matches' }
       }
     }
-    console.log(state)
   }
 }
 
