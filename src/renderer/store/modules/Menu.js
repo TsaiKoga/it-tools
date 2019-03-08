@@ -1,5 +1,5 @@
 const state = {
-  menuState: false
+  menuState: true
 }
 
 const mutations = {

@@ -6,13 +6,13 @@
         </p>
         <ul class="menu-list">
           <router-link :to="{name: 'regex-page'}">
-            <li>Regex Tool</li>
+            <li :class="{'active': $route.name === 'regex-page'}">Regex Tool</li>
           </router-link>
           <router-link :to="{name: 'timestamp-page'}">
-            <li>Timestamp Converter</li>
+            <li :class="{'active': $route.name === 'timestamp-page'}">Timestamp Converter</li>
           </router-link>
           <router-link :to="{name: 'color-box-page'}">
-            <li>Color Box</li>
+            <li :class="{'active': $route.name === 'color-box-page'}">Color Box</li>
           </router-link>
         </ul>
       </aside>
@@ -23,13 +23,13 @@
         </p>
         <ul class="menu-list">
           <router-link :to="{name: 'regex-page'}">
-            <li>R</li>
+            <li :class="{'active': $route.name === 'regex-page'}">R</li>
           </router-link>
           <router-link :to="{name: 'timestamp-page'}">
-            <li>T</li>
+            <li :class="{'active': $route.name === 'timestamp-page'}">T</li>
           </router-link>
           <router-link :to="{name: 'color-box-page'}">
-            <li>C</li>
+            <li :class="{'active': $route.name === 'color-box-page'}">C</li>
           </router-link>
         </ul>
       </aside>
@@ -93,6 +93,9 @@ aside {
     &:hover {
       background-color: #566573;
     }
+  }
+  li.active {
+    background-color: #566573;
   }
 }
 
