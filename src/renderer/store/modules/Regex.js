@@ -44,11 +44,14 @@ const mutations = {
       let matchedGroups = []
       let reGroup = []
       let beginPos = 0
+      let preventingTag = 0
       while ((reGroup = regexGlobal.exec(result['input'])) !== null) {
+        if (preventingTag > reGroup['index']) break
         matchedContext.push(reGroup['input'].slice(beginPos, reGroup['index']))
         matchedContext.push(reGroup[0])
         beginPos = reGroup['index'] + reGroup[0].length
         if (flag > 1) matchedGroups.push(reGroup)
+        preventingTag++
       }
       if (beginPos !== result['input'].length) {
         matchedContext.push(result['input'].slice(beginPos, result['input'].length))
@@ -73,7 +76,6 @@ const mutations = {
               matchedContext.push('')
             })
             let matchedGroups = [...Array(state.regexCont.length)].map(() => [state.regexCont, ''])
-            console.log(matchedGroups)
             state.regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
           } else {
             matchContext(reGb, result, result.length)
