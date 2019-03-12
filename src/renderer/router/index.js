@@ -24,6 +24,11 @@ export default new Router({
       path: '/color-box-page',
       name: 'color-box-page',
       component: require('@/components/ColorBoxPage').default
+    },
+    {
+      path: '/json-page',
+      name: 'json-page',
+      component: require('@/components/JsonPage').default
     }
   ]
 })

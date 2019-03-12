@@ -14,6 +14,9 @@
           <router-link :to="{name: 'color-box-page'}">
             <li :class="{'active': $route.name === 'color-box-page'}">Color Box</li>
           </router-link>
+          <router-link :to="{name: 'json-page'}">
+            <li :class="{'active': $route.name === 'json-page'}">Json Parser</li>
+          </router-link>
         </ul>
       </aside>
 
@@ -30,6 +33,9 @@
           </router-link>
           <router-link :to="{name: 'color-box-page'}">
             <li :class="{'active': $route.name === 'color-box-page'}">C</li>
+          </router-link>
+          <router-link :to="{name: 'json-page'}">
+            <li :class="{'active': $route.name === 'json-page'}">J</li>
           </router-link>
         </ul>
       </aside>
