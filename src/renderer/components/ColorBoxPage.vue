@@ -5,7 +5,7 @@
         <label>Current Color: </label>
         <div class="current-color-box">
           <p v-if="currentColor['name'] !== ''">{{ currentColor['name'] }}</p>
-          <span class="current-color" :style="'background-color:' + currentColor['hex']"></span>
+          <span class="current-color" :style="'background-color:' + currentColor['hex']" v-if="currentColor['hex']">Copied</span>
           <p v-if="currentColor['hex'] !== ''">{{ 'HEX: ' + currentColor['hex'] }}</p>
           <p v-if="currentColor['rgb'] !== ''">{{ 'RGB(' + currentColor['rgb'] +')' }}</p>
           <p v-if="currentColor['hsl'] !== ''">{{ 'HSL(' + currentColor['hsl'] + ')' }}</p>
@@ -104,6 +104,7 @@ export default {
       this.activeColor({ row: rowIndx, col: colIndx })
       let currentObj = { name: obj['name'] + '-' + colIndx, hex: obj['hex'], rgb: obj['rgb'], hsl: obj['hsl'] }
       this.setCurrentColor(currentObj)
+      this.$copyText(currentObj['hex'])
     },
     clickedColor (rowIndx, colIndx) {
       this.disactiveColor({ row: rowIndx, col: colIndx })
@@ -168,6 +169,9 @@ export default {
         width: 8vw;
         margin: 1.5vh 2vw;
         border-radius: 5px;
+        line-height: 5vh;
+        color: #fff;
+        text-align: center;
       }
       p {
         color: white;
