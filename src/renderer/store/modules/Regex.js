@@ -85,9 +85,13 @@ const mutations = {
         state.regexResult = { status: 0, content: "Here's the result." }
       }
     } catch (err) {
-      console.log(err)
+      console.log(err.message)
       if (err.message.match(/expression/)) {
-        state.regexResult = { status: -1, content: 'Expression Error' }
+        if (err.message.match(/Unterminated\s+group/)) {
+          state.regexResult = { status: -1, content: 'You have an unmatched parenthesis.' }
+        } else {
+          state.regexResult = { status: -1, content: 'Expression Error' }
+        }
       } else if (err.message.match(/constructor/)) {
         state.regexResult = { status: -1, content: 'Invalid Option' }
       } else {

@@ -125,14 +125,14 @@
       }
       table tr td {
         padding: 1px 10px;
-        border: 1px solid #cccccc;
+        background-color: #0f202d;
       }
       table tr td.title {
-        color: #222222;
+        color: hsla(0,0%,100%,.3);
         font-size: 1em;
       }
       table tr td pre {
-        background-color: #222222;
+        background-color: #172a3a;
         color: white;
         border-radius: 2px;
         padding: 2px 10px;

@@ -282,8 +282,9 @@ export default {
       width: 25vw;
       height: 15vh;
       padding: 0 1vw;
-      font-size: 5vh;
+      font-size: 1.5em;
       flex: 3;
+      text-align: center;
       -webkit-flex: 3;
       &:focus {
         outline: none;
@@ -297,7 +298,7 @@ export default {
       background: #fff;
       width: 25vw;
       height: 15vh;
-      line-height: 13vh;
+      line-height: 15vh;
       padding: 0 1vw;
       font-size: 1.5em;
       color: #f90;

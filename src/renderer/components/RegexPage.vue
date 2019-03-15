@@ -214,7 +214,9 @@ export default {
     text-decoration: none;
     text-align: center;
     border: 1px solid white;
-    font-size: 1em;
+    font-size: 0.9em;
+    height: 4vh;
+    line-height: 4vh;
     border-radius: 5px;
     margin-bottom: 5px;
     &:hover {
