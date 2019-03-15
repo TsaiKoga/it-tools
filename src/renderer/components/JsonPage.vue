@@ -13,7 +13,7 @@ PS:The Key Value must be enclosed in double quotation marks."
       </div>
 
       <div class="json-result">
-        <json-result-help :renderResult="jsonResult"></json-result-help>
+        <json-result-help :renderResult="jsonHtml"></json-result-help>
       </div>
     </div>
   </div>
@@ -31,7 +31,8 @@ export default {
   computed: {
     ...mapState('Json', {
       'jsonStr': state => state.jsonStr,
-      'jsonResult': state => state.jsonResult
+      'jsonHtml': state => state.jsonHtml,
+      'xmlHtml': state => state.xmlHtml
     })
   },
   methods: {

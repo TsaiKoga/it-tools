@@ -1,6 +1,9 @@
 const state = {
   jsonStr: '',
-  jsonResult: ''
+  jsonResult: '',
+  jsonHtml: '',
+  error: { 'code': 0, 'msg': '' },
+  isXML: false
 }
 
 const ESCAPE_SYM = [
@@ -17,13 +20,14 @@ const mutations = {
 
   CONVERT_JSON (state) {
     let i = 0
-    let error = { 'code': 0, 'msg': '' }
     let indentInit = 0
     let indentSym = '&nbsp;'
     let indentCount = 4
 
-    let jsonResult = parseValue()
-    state.jsonResult = renderHtml(jsonResult, indentInit)
+    state.error = { 'code': 0, 'msg': '' }
+    state.jsonResult = parseValue()
+    state.jsonHtml = renderHtml(state.jsonResult, indentInit)
+    state.isXML = false
 
     function escapeString (txt) {
       ESCAPE_SYM.forEach((symItem) => {
@@ -40,8 +44,8 @@ const mutations = {
     function renderHtml (result, indtIndx) {
       let rsltHtml = ''
       let indentI = indtIndx + 1
-      if (error['code'] === -1) {
-        rsltHtml = '<div class="error">Error:</div> <div class="error-msg">' + error['msg'] + '</div><div class="error-pos-msg">This error occured near <p>' + error['posMsg'] + '</p> </div>'
+      if (state.error['code'] === -1) {
+        rsltHtml = '<div class="error">Error:</div> <div class="error-msg">' + state.error['msg'] + '</div><div class="error-pos-msg">This error occured near <p>' + state.error['posMsg'] + '</p> </div>'
       } else if (Array.isArray(result)) {
         let arrayHtml = ''
         let arrayItemCount = 0
@@ -184,8 +188,6 @@ const mutations = {
           comma = true
           i++ // 跳过`,`
         }
-        console.log(comma)
-        console.log(value)
         skipSpace()
         if (state.jsonStr[i] === `}` && comma) return errorTermination('missing key-value after comma.')
         if (state.jsonStr[i] !== `}` && !comma) return errorTermination('missing comma: ,')
@@ -275,8 +277,54 @@ const mutations = {
     }
 
     function errorTermination (msg) {
-      error = {'code': -1, 'posMsg': errorPosMsg(), 'msg': 'It seems that ' + msg}
-      return error
+      state.error = {'code': -1, 'posMsg': errorPosMsg(), 'msg': 'It seems that ' + msg}
+      return state.error
+    }
+  },
+
+  JSON_TO_XML (state) {
+    let indentInit = 0
+    let indentSym = '&nbsp;'
+    let indentCount = 2
+    let result = state.jsonResult
+
+    state.jsonHtml = '&lt;?xml version=<span class="xml-string">"1.0"</span> encoding=<span class="xml-string">"UTF-8"</span>?&gt;&lt;root&gt;<br/>'
+    state.jsonHtml += renderXML(result, indentInit)
+    state.jsonHtml += '&lt;/root&gt;'
+    state.isXML = true
+
+    function renderXML (jsonResult, indtIndx) {
+      let xmlResult = ''
+      let indentI = indtIndx + 1
+      if (Array.isArray(jsonResult)) {
+        jsonResult.forEach((item, index) => {
+          if (typeof item === 'object' || Array.isArray(item)) {
+            xmlResult += ('<br/>' + indentSym.repeat(indentCount * indentI) + '&lt;' + index + '&gt;<br>')
+            xmlResult += renderXML(item, indentI)
+            xmlResult += (indentSym.repeat(indentCount * indentI) + '&lt;/' + index + '&gt;<br>')
+          } else {
+            xmlResult += (indentSym.repeat(indentCount * indentI) + '&lt;' + index + '&gt;')
+            xmlResult += ('<span class="xml-val">' + item + '</span>')
+            xmlResult += ('&lt;/' + index + '&gt;<br>')
+          }
+        })
+      } else if (typeof jsonResult === 'object') {
+        for (let index = 0; index < Object.entries(jsonResult).length; index++) {
+          let keyval = Object.entries(jsonResult)[index]
+          xmlResult += (indentSym.repeat(indentCount * indentI) + '&lt;' + keyval[0] + '&gt;')
+          if (typeof keyval[1] === 'object' || Array.isArray(keyval[1])) {
+            xmlResult += '<br>'
+            xmlResult += renderXML(keyval[1], indentI)
+            xmlResult += (indentSym.repeat(indentCount * indentI) + '&lt;/' + keyval[0] + '&gt;<br>')
+          } else {
+            xmlResult += ('<span class="xml-val">' + keyval[1] + '</span>')
+            xmlResult += ('&lt;/' + keyval[0] + '&gt;<br>')
+          }
+        }
+      } else {
+        xmlResult = jsonResult
+      }
+      return xmlResult
     }
   }
 }
@@ -287,6 +335,9 @@ const actions = {
   },
   convertJson ({ commit }) {
     commit('CONVERT_JSON')
+  },
+  jsonToXML ({ commit }) {
+    commit('JSON_TO_XML')
   }
 }
 
