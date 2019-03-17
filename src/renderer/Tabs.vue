@@ -43,6 +43,7 @@ export default {
       ul {
         list-style: none;
         text-align: left;
+        -webkit-app-region: drag;
       }
       ul li {
         display: inline-block;

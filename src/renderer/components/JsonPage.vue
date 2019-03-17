@@ -83,8 +83,10 @@ export default {
     display: flex;
     display: -webkit-flex;
     justify-content: space-around;
+    -webkit-app-region: drag;
     .json-field {
       background-color: #172a3a;
+      -webkit-app-region: no-drag;
     }
     .json-field .json-textarea {
       flex: 1;
@@ -109,6 +111,7 @@ export default {
       color: hsla(0,0%,100%,.4);
       letter-spacing: 0.53px;
       line-height: 1.5;
+      -webkit-app-region: no-drag;
     }
   }
 </style>

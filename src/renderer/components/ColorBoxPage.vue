@@ -144,6 +144,7 @@ export default {
       position: fixed;
       z-index: 1000;
       text-align: left;
+      -webkit-app-region: drag;
     }
 
     .header .current-color-bar {
@@ -177,6 +178,7 @@ export default {
         color: white;
         font-size: 0.8em;
         margin-left: 1.5vw;
+        -webkit-app-region: no-drag;
       }
     }
 

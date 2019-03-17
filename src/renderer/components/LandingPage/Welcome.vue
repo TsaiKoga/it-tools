@@ -29,6 +29,7 @@ body {
   width: 100vw;
   height: 100vh;
   filter: blur(0.2vw) contrast(8);
+  -webkit-app-region: drag;
 }
 
 .g-view {
