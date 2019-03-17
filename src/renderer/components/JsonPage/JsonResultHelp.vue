@@ -3,6 +3,7 @@
     <div class="btn-bar">
       <div class="xml-btn" @click="toggleXML" v-if="!isXML"> TO XML </div>
       <div class="xml-btn" @click="toggleXML" v-if="isXML"> TO JSON </div>
+      <div class="reset-btn" @click="resetInput"> Reset </div>
       <div class="copy-btn" @click="copyObject"> Copy </div>
     </div>
     <div v-html="renderResult" ref="json-result-elem">
@@ -44,7 +45,8 @@ export default {
   methods: {
     ...mapActions('Json', [
       'jsonToXML',
-      'convertJson'
+      'convertJson',
+      'setJsonText'
     ]),
     foldJson (event) {
       event.preventDefault()
@@ -65,6 +67,11 @@ export default {
       } else {
         this.jsonToXML()
       }
+    },
+    resetInput (event) {
+      event.preventDefault()
+      this.setJsonText('')
+      this.convertJson()
     }
   }
 }
@@ -135,6 +142,7 @@ export default {
       color: #25aae2;
     }
     .btn-bar .copy-btn,
+    .btn-bar .reset-btn,
     .btn-bar .xml-btn {
       border-radius: 2px;
       font-weight: 600;
