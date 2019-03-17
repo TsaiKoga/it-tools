@@ -95,6 +95,13 @@
           </tr>
 
           <tr>
+            <td class="title">Lua</td>
+            <td>
+              <pre><span class="cls-var">os.</span><span class="key-method">time()</span></pre>
+            </td>
+          </tr>
+
+          <tr>
             <td class="title">.NET/C#</td>
             <td>
               <pre>(<span class="cls-var">DateTime</span>.Now.<span class="method">ToUniversalTime</span>().Ticks - <span class="int">621355968000000000</span>) / <span class="int">10000000</span></pre>
@@ -132,7 +139,7 @@
         font-size: 1em;
       }
       table tr td pre {
-        background-color: #172a3a;
+        // background-color: #172a3a;
         color: white;
         border-radius: 2px;
         padding: 2px 10px;
