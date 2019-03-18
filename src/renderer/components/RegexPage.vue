@@ -126,8 +126,8 @@ export default {
     display: flex;
     font-family: futura,helvetica,arial;
     height: 100vh;
-    width: 95vw;
-    margin-left: 5vw;
+    width: 93vw;
+    margin-left: 7vw;
   }
   .regex-inner {
     text-align: left;
@@ -140,7 +140,7 @@ export default {
     -webkit-flex: 1;
     flex: 1;
     padding: 2vh 1vw;
-    width: 93vw;
+    width: 91vw;
   }
   .regex-top {
     height: 15vh;
@@ -171,7 +171,7 @@ export default {
   }
   .regex-top input[name=regex-exp] {
     height: 9vh;
-    width: 74vw;
+    width: 72vw;
     padding: 0 1vw;
     font-size: 5vh;
     background-color: black;

@@ -128,7 +128,7 @@ export default {
 <style lang="scss" scoped>
   /* CSS */
   #color-box-page {
-    width: 95vw;
+    width: 93vw;
     padding: 10px;
     padding-top: 0;
     background: #232323;
@@ -136,10 +136,10 @@ export default {
     font-family: futura,helvetica,arial;
     display: -webkit-flex;
     display: flex;
-    margin-left: 5vw;
+    margin-left: 7vw;
     .header {
       height: 8vh;
-      width: 93vw;
+      width: 91vw;
       background-color: #333333;
       position: fixed;
       z-index: 1000;

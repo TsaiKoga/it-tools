@@ -65,8 +65,8 @@ export default {
     display: flex;
     font-family: futura,helvetica,arial;
     height: 100vh;
-    width: 95vw;
-    margin-left: 5vw;
+    width: 93vw;
+    margin-left: 7vw;
   }
   .json-inner {
     text-align: left;

@@ -1,13 +1,6 @@
 <template>
     <transition name="slide">
       <aside class="menu broad-menu" v-if="menuState == false" key="broadMenu">
-        <div class="btns-group">
-          <span class="close-btn" @click='closeWin'><p></p></span>
-          <span class="min-btn" @click='minWin'><p></p></span>
-          <span class="max-btn" @click='maxWin'><p></p></span>
-          <span class="restore-btn" style='display: none;' @click='restoreWin'><p></p></span>
-        </div>
-
         <p class="menu-label" @click="toggleMenuSidebar">
           IT Tools
         </p>
@@ -28,27 +21,21 @@
       </aside>
 
       <aside class="menu narrow-menu" v-else key="narrowMenu">
-        <div class="btns-group">
-          <span class="close-btn" @click='closeWin'><p></p></span>
-          <span class="min-btn" @click='minWin'><p></p></span>
-          <span class="max-btn" @click='maxWin'><p></p></span>
-          <span class="restore-btn" style='display: none;' @click='restoreWin'><p></p></span>
-        </div>
         <p class="menu-label" @click="toggleMenuSidebar">
           IT
         </p>
         <ul class="menu-list">
           <router-link :to="{name: 'regex-page'}">
-            <li :class="{'active': $route.name === 'regex-page'}">R</li>
+            <li :class="{'active': $route.name === 'regex-page'}">Regex</li>
           </router-link>
           <router-link :to="{name: 'timestamp-page'}">
-            <li :class="{'active': $route.name === 'timestamp-page'}">T</li>
+            <li :class="{'active': $route.name === 'timestamp-page'}">Time</li>
           </router-link>
           <router-link :to="{name: 'color-box-page'}">
-            <li :class="{'active': $route.name === 'color-box-page'}">C</li>
+            <li :class="{'active': $route.name === 'color-box-page'}">Color</li>
           </router-link>
           <router-link :to="{name: 'json-page'}">
-            <li :class="{'active': $route.name === 'json-page'}">J</li>
+            <li :class="{'active': $route.name === 'json-page'}">Json</li>
           </router-link>
         </ul>
       </aside>
@@ -57,7 +44,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { remote } from 'electron'
 
 export default {
   name: 'sidebar',
@@ -67,36 +53,6 @@ export default {
     ]),
     toggleMenuSidebar () {
       this.toggleMenu()
-    },
-    toggleMaxRestoreButtons () {
-      let window = remote.getCurrentWindow()
-      let maxBtns = document.getElementsByClassName('max-btn')
-      let restoreBtns = document.getElementsByClassName('restore-btn')
-      if (window.isFullScreen()) {
-        maxBtns[0].style.display = 'none'
-        restoreBtns[0].style.display = 'inline'
-      } else {
-        restoreBtns[0].style.display = 'none'
-        maxBtns[0].style.display = 'inline'
-      }
-    },
-    closeWin () {
-      let window = remote.getCurrentWindow()
-      window.close()
-    },
-    minWin () {
-      let window = remote.getCurrentWindow()
-      window.minimize()
-    },
-    maxWin () {
-      let window = remote.getCurrentWindow()
-      window.setFullScreen(true)
-      this.toggleMaxRestoreButtons()
-    },
-    restoreWin () {
-      let window = remote.getCurrentWindow()
-      window.setFullScreen(false)
-      this.toggleMaxRestoreButtons()
     }
   },
   computed: {
@@ -118,7 +74,7 @@ aside {
   background: #333333;
   z-index: 9000;
   .btns-group {
-    width: 5vw;
+    width: 7vw;
     display: flex;
     display: -webkit-flex;
     justify-content: space-around;
@@ -221,14 +177,14 @@ aside {
 }
 
 aside.narrow-menu {
-  width: 5vw;
+  width: 7vw;
   ul {
     margin: 0;
     padding: 0;
     li {
-      padding: 0;
+      padding: 1.5vh 0;
       text-align: center;
-      font-size: 2em;
+      font-size: 1em;
     }
   }
 }

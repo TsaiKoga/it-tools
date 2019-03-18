@@ -112,7 +112,7 @@ export default {
 <style lang="scss" scoped>
   /* CSS */
   #timestamp-page {
-    width: 95vw;
+    width: 93vw;
     padding: 10px;
     height: 100vh;
     background: #232323;
@@ -120,7 +120,7 @@ export default {
     font-family: futura,helvetica,arial;
     display: -webkit-flex;
     display: flex;
-    margin-left: 5vw;
+    margin-left: 7vw;
     .timestamp-inner {
       border: 20px solid #e6e6e6;
       background-color: #7B7D7D;
@@ -130,7 +130,7 @@ export default {
       -webkit-flex: 1;
       flex: 1;
       padding: 2vh 5vw;
-      width: 93vw;
+      width: 91vw;
     }
     .header {
       height: 25vh;
