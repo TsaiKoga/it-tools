@@ -1,6 +1,25 @@
+<div align="center">
+<br>
+<img width="400" src="/src/renderer/assets/logo.png" alt="electron-vue">
+<br>
+<br>
+</div>
+
+<p align="center" color="#6a737d">
+A programing helper for developers built with Electron & Vue.js 🚀
+</p>
+
+<p align="center" style="font-size:16px;">
+English | [<a href="https://github.com/TsaiKoga/it-tools/blob/master/README_CN.md">简体中文</a>]
+</p>
+
+
 # it-tools
 
-> Help programers quickly solve problem.To be a life saver.
+> Help programers quickly solve problems.
+> To make life easy.
+
+Now this project including Regex Tool, Timestamp Converter, Color Box, Json Parser.
 
 #### Build Setup
 
@@ -22,6 +41,17 @@ npm test
 npm run lint
 
 ```
+
+#### Donation
+
+If this project help you reduce time to develop, you can give me a cup of coffee :)
+<br>
+<img width="200" height="200" src="/src/renderer/assets/alipay.gif" alt="electron-vue">&emsp;&emsp;
+<img width="200" height="200" src="/src/renderer/assets/wechatpay.gif" alt="electron-vue">
+
+#### &emsp;&emsp;&emsp;&emsp;Ali Pay&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Wechat Pay
+
+<br>
 
 ---
 

@@ -1,10 +1,10 @@
 {
   "name": "IT-Tools",
   "productName": "IT Tools",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "TsaiKoga <caikejia007@gmail.com>",
   "description": "Help programers quickly solve problem.To be a life saver.",
-  "license": null,
+  "license": "Apache-2.0",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js",
