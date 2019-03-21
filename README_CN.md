@@ -21,7 +21,9 @@
 
 这个工具目前包括“正则表达式”、“时间戳转化”、“颜色盒子”、“Json转化”
 
-#### 构建步骤
+[点此下载](https://github.com/TsaiKoga/it-tools/releases)
+
+### 构建步骤
 
 ``` bash
 # 安装依赖
@@ -43,7 +45,7 @@ npm run lint
 ```
 
 
-#### 捐赠
+### 捐赠
 
 
 

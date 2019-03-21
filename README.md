@@ -21,7 +21,9 @@ English | [<a href="https://github.com/TsaiKoga/it-tools/blob/master/README_CN.m
 
 Now this project including Regex Tool, Timestamp Converter, Color Box, Json Parser.
 
-#### Build Setup
+[Download](https://github.com/TsaiKoga/it-tools/releases)
+
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -42,7 +44,7 @@ npm run lint
 
 ```
 
-#### Donation
+### Donation
 
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 <br>
