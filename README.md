@@ -23,6 +23,10 @@ Now this project including Regex Tool, Timestamp Converter, Color Box, Json Pars
 
 [Download](https://github.com/TsaiKoga/it-tools/releases)
 
+### Preview
+
+![IT Tools](/src/renderer/assets/IT-Tools-preview.gif)
+
 ### Build Setup
 
 ``` bash

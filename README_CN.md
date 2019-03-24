@@ -23,6 +23,11 @@
 
 [点此下载](https://github.com/TsaiKoga/it-tools/releases)
 
+
+### 预览
+
+![IT Tools](/src/renderer/assets/IT-Tools-preview.gif)
+
 ### 构建步骤
 
 ``` bash
