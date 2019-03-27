@@ -78,45 +78,70 @@ export default {
 </script>
 
 <style lang="scss">
+  $white-font-color: #ffffff;
+  $json-key-color: #92278f;
+  $json-number-color: #25aae2;
+  $json-string-color: #29b973;
+  $json-boolean-color: #f18f01;
+  $fold-btn-on-color: #999999;
+  $error-msg-color: #D4AC0D;
+  $btn-bar-border-color: #0f202d;
+  $xml-string-color: #29b973;
+  $xml-val-color: #25aae2;
+  $btn-bg-color: #0f202d;
+  $btn-font-color: hsla(0,0%,100%,.5);
+
+
+  %flex-layout {
+    display: flex;
+    display: -webkit-flex;
+  }
+  %fold-marker-background {
+    background: #08f;
+    background: -webkit-linear-gradient(#43a8ff,#0f83e8);
+    background: linear-gradient(#43a8ff,#0f83e8);
+  }
+  %fold-marker-shadow {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2), inset 0 0 0 1px rgba(0,0,0,.1);
+    text-shadow: 0 -1px rgba(0,0,0,.1);
+  }
+
   .json-result-help {
     padding-left: 1vw !important;
     position: relative;
     .json-key {
-      color: #92278f;
+      color: $json-key-color;
       margin-right: 2px;
     }
     .json-value {
       margin-left: 2px;
     }
     .json-number {
-      color: #25aae2;
+      color: $json-number-color;
     }
     .json-string {
-      color: #29b973;
+      color: $json-string-color;
     }
     .json-boolean {
-      color: #f18f01;
+      color: $json-boolean-color;
     }
     .foldBtnOn {
-      color: #999;
+      color: $fold-btn-on-color;
       &:before {
         content: "\25BE";
         cursor: pointer;
       }
     }
     .fold-marker {
+      @extend %fold-marker-background;
+      @extend %fold-marker-shadow;
       border-radius: 4px;
-      background: #08f;
-      background: -webkit-linear-gradient(#43a8ff,#0f83e8);
-      background: linear-gradient(#43a8ff,#0f83e8);
-      box-shadow: 0 1px 1px rgba(0,0,0,.2), inset 0 0 0 1px rgba(0,0,0,.1);
-      color: #fff;
+      color: $white-font-color;
       font-family: arial;
       font-size: 12px;
       line-height: 0;
       margin: 0 3px;
       padding: 0 4px 1px;
-      text-shadow: 0 -1px rgba(0,0,0,.1);
       cursor: pointer;
     }
     .error {
@@ -124,22 +149,21 @@ export default {
       font-weight: bold;
     }
     .error-pos-msg p {
-      color: #D4AC0D;
+      color: $error-msg-color;
       display: inline;
     }
     .btn-bar {
+      @extend %flex-layout;
       position: relative;
-      display: flex;
-      display: -webkit-flex;
       padding: 10px 0;
-      border-bottom: 1px solid #0f202d;
+      border-bottom: 1px solid $btn-bar-border-color;
       justify-content: space-between;
     }
     .xml-string {
-      color: #29b973;
+      color: $xml-string-color;
     }
     .xml-val {
-      color: #25aae2;
+      color: $xml-val-color;
     }
     .btn-bar .copy-btn,
     .btn-bar .reset-btn,
@@ -148,14 +172,14 @@ export default {
       font-weight: 600;
       font-size: 14px;
       text-transform: uppercase;
-      background-color: #0f202d;
-      color: hsla(0,0%,100%,.5);
+      background-color: $btn-bg-color;
+      color: $btn-font-color;
       letter-spacing: .53px;
       font-family: Open Sans, sans-serif;
       padding: 5px 10px;
       cursor: pointer;
       &:hover {
-        color: #ffffff;
+        color: $white-font-color;
       }
     }
   }

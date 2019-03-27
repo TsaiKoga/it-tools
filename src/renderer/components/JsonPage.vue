@@ -57,60 +57,82 @@ export default {
   }
   body { font-family: 'Source Sans Pro', sans-serif; }
   /* CSS */
-  #json-page {
-    padding: 10px;
-    background: #232323;
-    text-align: center;
+  $white-font: #ffffff;
+  $inner-border-color: #e6e6e6;
+  $inner-bg-color: rgba(9, 20, 28, 1);
+
+  $json-page-bg-color: #232323;
+  $json-field-bg-color: #172a3a;
+
+  $json-textarea-font-color: hsla(0,0%,100%,.3);
+  $json-textarea-bg-color: #0f202d;
+  $json-result-font-color: hsla(0,0%,100%,.4);
+  $json-result-bg-color: #172a3a;
+
+  %flex-layout {
     display: -webkit-flex;
     display: flex;
+  }
+  %flex-1 {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+  %margin-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  %inner-border {
+    border: 20px solid $inner-border-color;
+    background-color: $inner-bg-color;
+  }
+  %json-textarea-font {
+    font-size: 16px;
+    letter-spacing: 0.53px;
+  }
+
+  #json-page {
+    @extend %flex-layout;
+    padding: 10px;
+    background: $json-page-bg-color;
+    text-align: center;
     font-family: futura,helvetica,arial;
     height: 100vh;
     width: 93vw;
     margin-left: 7vw;
   }
   .json-inner {
+    @extend %inner-border;
+    @extend %flex-layout;
+    @extend %flex-1;
+    @extend %margin-center;
     text-align: left;
-    border: 20px solid #e6e6e6;
     padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(9, 20, 28, 1);
-    color: #fff;
-    -webkit-flex: 1;
-    flex: 1;
+    color: $white-font;
     padding: 2vh 1vw;
     width: 90vw;
-    display: flex;
-    display: -webkit-flex;
     justify-content: space-around;
     -webkit-app-region: drag;
     .json-field {
-      background-color: #172a3a;
+      background-color: $json-field-bg-color;
       -webkit-app-region: no-drag;
     }
     .json-field .json-textarea {
-      flex: 1;
-      -webkit-flex: 1;
+      @extend %flex-1;
+      @extend %json-textarea-font;
+      color: $json-textarea-font-color;
+      background-color: $json-textarea-bg-color;
       padding: 8px;
-      font-size: 16px;
       height: 100%;
-      background-color: #0f202d;
-      color: hsla(0,0%,100%,.3);
-      letter-spacing: 0.53px;
-      line-height: 1.5;
       outline: none;
       border: 0;
     }
     .json-result {
-      flex: 1;
-      -webkit-flex: 1;
+      @extend %flex-1;
+      @extend %json-textarea-font;
       overflow: scroll;
-      font-size: 16px;
       padding: 5px;
-      background-color: #172a3a;
-      color: hsla(0,0%,100%,.4);
-      letter-spacing: 0.53px;
-      line-height: 1.5;
+      background-color: $json-result-bg-color;
+      color: $json-result-font-color;
       -webkit-app-region: no-drag;
     }
   }
