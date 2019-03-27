@@ -111,19 +111,77 @@ export default {
 
 <style lang="scss" scoped>
   /* CSS */
+  $arrow-color: #00b1d1;        // blue
+  $inner-border-color: #e6e6e6; // silver
+  $inner-bg-color: #7B7D7D;     // gray
+  $page-bg-color: #232323;      // dark
+  $reset-btn-color: #5D6D7E;    // wet asphalt 4
+  $reset-btn-font-border-color: #34495E; // wet asphalt 5
+  $reset-btn-bg-color: #D6DBDF; // wet asphalt 1
+  $result-font-color: #f90;     // orange
+
+  %inner-border {
+    border: 20px solid $inner-border-color;
+    background-color: $inner-bg-color;
+  }
+  %flex-layout {
+    display: -webkit-flex;
+    display: flex;
+  }
+  %right-arrow-header {
+    border-top-color: transparent;
+    border-right-color: $arrow-color;
+    border-bottom-color: transparent;
+    border-left-color: $arrow-color;
+    border-width: 6vh 0 6vh 5vw;
+    border-style: solid;
+  }
+  %right-arrow-footer {
+    border-style: solid;
+    border-color: $arrow-color;
+    border-top-color: $arrow-color;
+    border-width: 6vh 0 6vh 5vw;
+    border-left-color: transparent;
+  }
+  %left-arrow-header {
+    border-top-color: transparent;
+    border-right-color: $arrow-color;
+    border-bottom-color: transparent;
+    border-left-color: $arrow-color;
+    border-width: 6vh 5vw 6vh 0;
+    border-style: solid;
+  }
+  %left-arrow-footer {
+    border-style: solid;
+    border-color: $arrow-color;
+    border-width: 6vh 5vw 6vh 0;
+    border-right-color: transparent;
+  }
+  %input-style {
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
+    border-radius: 2px;
+    background: #fff;
+    color: $arrow-color;
+    border: none;
+    width: 25vw;
+    height: 15vh;
+    line-height: 15vh;
+    padding: 0 1vw;
+    font-size: 1.5em;
+  }
+
   #timestamp-page {
     width: 93vw;
     padding: 10px;
     height: 100vh;
-    background: #232323;
+    background: $page-bg-color;
     text-align: center;
     font-family: futura,helvetica,arial;
-    display: -webkit-flex;
-    display: flex;
+    @extend %flex-layout;
     margin-left: 7vw;
     .timestamp-inner {
-      border: 20px solid #e6e6e6;
-      background-color: #7B7D7D;
+      @extend %inner-border;
       padding-right: 15px;
       margin-left: auto;
       margin-right: auto;
@@ -136,8 +194,7 @@ export default {
       height: 25vh;
       line-height: 25vh;
       text-align: center;
-      display: flex;
-      display: -webkit-flex;
+      @extend %flex-layout;
       -webkit-align-items: center;
         align-items: center;
       -webkit-justify-content: center;
@@ -151,7 +208,7 @@ export default {
     .header button[name='reset'] {
       height: 10vh;
       font-size: 5vh;
-      background-color: #5D6D7E;
+      background-color: $reset-btn-color;
       color: white;
       padding: 0 2vw;
       margin-left: 1vw;
@@ -159,9 +216,9 @@ export default {
       border: 4px solid white;
       cursor: pointer;
       &:hover {
-        background-color: #D6DBDF;
-        border: 4px solid #34495E;
-        color: #34495E;
+        background-color: $reset-btn-bg-color;
+        border: 4px solid $reset-btn-font-border-color;
+        color: $reset-btn-font-border-color;
       }
     }
     .header .unit {
@@ -180,8 +237,7 @@ export default {
       height: 15vh;
       margin-bottom: 10vh;
       margin-right: 1vw;
-      display: flex;
-      display: -webkit-flex;
+      @extend %flex-layout;
       -webkit-align-items: center;
       align-items: center;
       -webkit-justify-content: center;
@@ -190,34 +246,29 @@ export default {
 
     .content .timestamp-field .arrow-body,
     .content .datetime-field .arrow-body {
-      background: #00b1d1;
-      border-color: #00b1d1;
+      background: $arrow-color;
+      border-color: $arrow-color;
       flex: 1;
       -webkit-flex: 1;
       line-height: 12vh;
       height: 12vh;
     }
     .content .timestamp-field .arrow-head {
-      background: #00b1d1;
-      border-color: #00b1d1;
+      background: $arrow-color;
+      border-color: $arrow-color;
       width: 5vw;
       height: 12vh;
     }
     .content .timestamp-field .arrow-head .arrow-part::after {
-      margin-left: 5vw;
-      border-top-color: transparent;
-      border-right-color: #00b1d1;
-      border-bottom-color: transparent;
-      border-left-color: #00b1d1;
-      border-width: 6vh 0 6vh 5vw;
-      border-style: solid;
       top: 0;
       content: '';
       display: block;
+      margin-left: 5vw;
+      @extend %right-arrow-header;
     }
     .content .timestamp-field .arrow-footer {
-      background: #00b1d1;
-      border-color: #00b1d1;
+      background: $arrow-color;
+      border-color: $arrow-color;
       width: 5vw;
       height: 12vh;
       position: relative;
@@ -225,18 +276,13 @@ export default {
     .content .timestamp-field .arrow-footer .arrow-part::after {
       content: '';
       display: block;
-      border-style: solid;
-      border-color: #00b1d1;
-      border-top-color: #00b1d1;
-      border-width: 6vh 0 6vh 5vw;
-      border-left-color: transparent;
       position: absolute;
       left: -5vw;
-
+      @extend %right-arrow-footer;
     }
     .content .datetime-field .arrow-head {
-      background: #00b1d1;
-      border-color: #00b1d1;
+      background: $arrow-color;
+      border-color: $arrow-color;
       width: 5vw;
       height: 12vh;
       position: relative;
@@ -246,62 +292,37 @@ export default {
       top: 0;
       bottom: 0;
       left: -5vw;
-      border-top-color: transparent;
-      border-right-color: #00b1d1;
-      border-bottom-color: transparent;
-      border-left-color: #00b1d1;
-      border-width: 6vh 5vw 6vh 0;
-      border-style: solid;
       content: '';
+      @extend %left-arrow-header;
       display: block;
     }
     .content .datetime-field .arrow-footer {
-      background: #00b1d1;
-      border-color: #00b1d1;
+      background: $arrow-color;
+      border-color: $arrow-color;
       width: 5vw;
       height: 12vh;
     }
     .content .datetime-field .arrow-footer .arrow-part::after {
       content: '';
       display: block;
-      border-style: solid;
-      border-color: #00b1d1;
-      border-width: 6vh 5vw 6vh 0;
-      border-right-color: transparent;
+      @extend %left-arrow-footer;
       margin-left: 5vw;
     }
 
     .content .timestamp-field .timestamp-input,
     .content .datetime-field .datetime-input {
-      -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
-      box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
-      border-radius: 2px;
-      background: #fff;
-      color: #00b1d1; // 蓝色
-      border: none;
-      width: 25vw;
-      height: 15vh;
-      padding: 0 1vw;
-      font-size: 1.5em;
+      @extend %input-style;
       flex: 3;
-      text-align: center;
       -webkit-flex: 3;
+      text-align: center;
       &:focus {
         outline: none;
       }
     }
     .content .timestamp-field .convert-datetime-field,
     .content .datetime-field .convert-timestamp-field {
-      -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
-      box-shadow: 0 1px 3px 0 rgba(0,0,0,.14);
-      border-radius: 2px;
-      background: #fff;
-      width: 25vw;
-      height: 15vh;
-      line-height: 15vh;
-      padding: 0 1vw;
-      font-size: 1.5em;
-      color: #f90;
+      @extend %input-style;
+      color: $result-font-color;
       flex: 3;
       -webkit-flex: 3;
     }

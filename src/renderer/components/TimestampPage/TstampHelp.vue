@@ -120,6 +120,15 @@
 </script>
 
 <style lang="scss" scoped>
+  $table-bg-color: #0f202d;
+  $comment-font-color: #777777;
+  $str-font-color: #1ABC9C;
+  $method-font-color: #5DADE2;
+  $int-font-color: #F5B041;
+  $var-font-color: #E74C3C;
+  $class-font-color: #F7DC6F;
+  $key-method-font-color: #A569BD;
+
   .tstamp-help {
     .doc {
       display: flex;
@@ -132,38 +141,37 @@
       }
       table tr td {
         padding: 1px 10px;
-        background-color: #0f202d;
+        background-color: $table-bg-color;
       }
       table tr td.title {
         color: hsla(0,0%,100%,.3);
         font-size: 1em;
       }
       table tr td pre {
-        // background-color: #172a3a;
         color: white;
         border-radius: 2px;
         padding: 2px 10px;
       }
       table tr td .comment {
-        color: #777777;
+        color: $comment-font-color;
       }
       table tr td .str {
-        color: #1ABC9C;
+        color: $str-font-color;
       }
       table tr td .method {
-        color: #5DADE2;
+        color: $method-font-color;
       }
       table tr td .int {
-        color: #F5B041;
+        color: $int-font-color;
       }
       table tr td .var {
-        color:  #E74C3C;
+        color:  $var-font-color;
       }
       table tr td .cls-var {
-        color: #F7DC6F;
+        color: $class-font-color;
       }
       table tr td .key-method {
-        color: #A569BD;
+        color: $key-method-font-color;
       }
     }
   }
