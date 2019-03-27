@@ -111,6 +111,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $white-font-color: #ffffff;
+  $page-bg-color: #232323;      // dark
+
+  $inner-border-color: #e6e6e6; // silver
+  $inner-bg-color: #4A708B;
+  $inner-font-color: #ffffff;
+
+  $clear-btn-font-border-color: #6e6e6e;
+
+  $result-init-border-color: #779a73;
+  $result-init-bg-color: #cdf3c9;
+  $result-init-font-color: #283a26;
+
+  $result-not-match-border-color: #EEA2AD;
+  $result-not-match-font-color: #EE6A50;
+  $result-not-match-bg-color: #EED5D2;
+
+  $input-border-color: #dddddd;
+  $macth-group-label-color: #84bde7;
+  $match-font-color: #0066b3;
+  $match-bg-color: #bfe4ff;
+  $black-bg-color: #000000;
+
+  %flex-layout {
+    display: -webkit-flex;
+    display: flex;
+  }
+  %flex-1 {
+    flex: 1;
+    -webkit-flex: 1;
+  }
+  %flex-2 {
+    flex: 2;
+    -webkit-flex: 2;
+  }
+  %margin-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  %input-color-style {
+    color: $white-font-color;
+    background-color: $black-bg-color;
+  }
+  %input-top-style {
+    @extend %input-color-style;
+    height: 9vh;
+    padding: 0 1vw;
+    font-size: 5vh;
+    border: 1px solid $input-border-color;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -119,26 +170,23 @@ export default {
   body { font-family: 'Source Sans Pro', sans-serif; }
   /* CSS */
   #regex-page {
+    @extend %flex-layout;
     padding: 10px;
-    background: #232323;
+    background: $page-bg-color;
     text-align: center;
-    display: -webkit-flex;
-    display: flex;
     font-family: futura,helvetica,arial;
     height: 100vh;
     width: 93vw;
     margin-left: 7vw;
   }
   .regex-inner {
+    @extend %flex-1;
+    @extend %margin-center;
     text-align: left;
-    border: 20px solid #e6e6e6;
+    border: 20px solid $inner-border-color;
+    background-color: $inner-bg-color;
+    color: $inner-font-color;
     padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #4A708B;
-    color: #fff;
-    -webkit-flex: 1;
-    flex: 1;
     padding: 2vh 1vw;
     width: 91vw;
   }
@@ -146,8 +194,7 @@ export default {
     height: 15vh;
   }
   .regex-top-fields {
-    display: flex;
-    display: -webkit-flex;
+    @extend %flex-layout;
   }
   label {
     letter-spacing: 1px;
@@ -158,10 +205,10 @@ export default {
     margin-bottom: 1vh;
   }
   .regex-diagonal {
+    @extend %flex-1;
     font-size: 5vh;
-    color: white;
+    color: $white-font-color;
     margin: 0;
-    flex: 1;
     text-align: center;
     line-height: 9vh;
   }
@@ -170,22 +217,12 @@ export default {
     margin: auto;
   }
   .regex-top input[name=regex-exp] {
-    height: 9vh;
     width: 72vw;
-    padding: 0 1vw;
-    font-size: 5vh;
-    background-color: black;
-    border: 1px solid #ddd;
-    color: white;
+    @extend %input-top-style;
   }
   .regex-top input[name=regex-opt] {
-    height: 9vh;
     width: 10vw;
-    padding: 0 1vw;
-    font-size: 5vh;
-    background-color: black;
-    border: 1px solid #ddd;
-    color: white;
+    @extend %input-top-style;
   }
 
   .regex-bottom {
@@ -193,70 +230,63 @@ export default {
     height: 64vh;
   }
   .regex-bottom {
-    display: -webkit-flex;
-    display: flex;
+    @extend %flex-layout;
   }
   .regex-bottom .regex-match-btn {
-    display: -webkit-flex;
-    display: flex;
+    @extend %flex-layout;
   }
   .regex-bottom .regex-match-btn label {
-    flex: 2;
-    -webkit-flex: 2;
+    @extend %flex-2;
   }
   .regex-bottom .regex-match-btn .clean-fields {
-    flex: 1;
-    -webkit-flex: 1;
+    @extend %flex-1;
     margin-right: 1vw;
-    background-color: #6e6e6e;
-    color: white;
+    background-color: $clear-btn-font-border-color;
+    color: $white-font-color;
+    border: 1px solid $white-font-color;
     letter-spacing: 1px;
     text-decoration: none;
     text-align: center;
-    border: 1px solid white;
     font-size: 0.9em;
     height: 4vh;
     line-height: 4vh;
     border-radius: 5px;
     margin-bottom: 5px;
     &:hover {
-      border: 1px solid #6e6e6e;
+      border: 1px solid $clear-btn-font-border-color;
+      color: $clear-btn-font-border-color;
       background: white;
-      color: #6e6e6e;
     }
   }
   .regex-bottom .regex-textarea {
+    @extend %input-color-style;
     height: 55vh;
     width: 40vw;
     padding: 1vh 1vw;
     font-size: 3vh;
-    background-color: black;
-    color: white;
     margin-left: 2vw;
   }
   .regex-content {
     display: inline-block;
-    -webkit-flex: 1;
-    flex: 1;
+    @extend %flex-1;
   }
   .result-content {
+    @extend %flex-1;
     display: inline-block;
-    -webkit-flex: 1;
-    flex: 1;
     text-align: center;
     margin-top: 5vh;
     height: 55vh;
   }
   .result-init {
-    border: 10px solid #779a73;
-    background-color: #cdf3c9;
-    color: #283a26;
+    border: 10px solid $result-init-border-color;
+    background-color: $result-init-bg-color;
+    color: $result-init-font-color;
     line-height: 55vh;
   }
   .result-not-match {
-    border: 10px solid #EEA2AD;
-    background-color: #EED5D2;
-    color: #EE6A50;
+    border: 10px solid $result-not-match-border-color;
+    background-color: $result-not-match-bg-color;
+    color: $result-not-match-font-color;
     line-height: 55vh;
   }
   .result-match {
@@ -265,18 +295,17 @@ export default {
     ul {
       list-style: none;
       .match-groups {
+        @extend %input-color-style;
         white-space: pre-wrap;
         word-wrap: break-word;
-        border: 1px solid #ddd;
+        border: 1px solid $input-border-color;
         padding: 15px;
-        background-color: #000;
-        color: #fff;
         margin-bottom: 10px;
       }
       .match-groups label {
         font-family: futura,helvetica,arial;
         font-variant: small-caps;
-        color: #84bde7;
+        color: $macth-group-label-color;
         font-size: 12px;
         margin: 0;
         height: 0vh;
@@ -287,12 +316,11 @@ export default {
       }
     }
     .result-item {
+      @extend %input-color-style;
       white-space: pre-wrap;
       word-wrap: break-word;
-      border: 1px solid #ddd;
+      border: 1px solid $input-border-color;
       padding: 15px;
-      background-color: #000;
-      color: #fff;
       margin-bottom: 10px;
     }
     span {
@@ -302,8 +330,8 @@ export default {
     }
     .match {
       padding: 2px;
-      color: #0066b3;
-      background-color: #bfe4ff;
+      color: $match-font-color;
+      background-color: $match-bg-color;
     }
   }
 </style>

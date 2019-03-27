@@ -136,6 +136,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $border-color: #cecece;
+  %flex-layout {
+    display: flex;
+    -webkit-flex: flex;
+    justify-content: flex-start;
+  }
+
   .regex-help {
     .doc {
       h2 {
@@ -143,8 +150,7 @@ export default {
         margin-bottom: 3vh;
       }
       .quick-ref {
-        display: flex;
-        display: -webkit-flex;
+        @extend %flex-layout;
       }
       table {
         width: 45vw;
@@ -153,15 +159,13 @@ export default {
         height: 4vh;
       }
       .regex-options {
+        @extend %flex-layout;
         text-align: left;
         margin-top: 3vh;
         margin-left: 10px;
         margin-right: 10px;
-        border-top: 1px solid #cecece;
+        border-top: 1px solid $border-color;
         padding-top: 4px;
-        display: flex;
-        display: -webkit-flex;
-        justify-content: flex-start;
       }
       .regex-options code {
         margin-left: 25px;
