@@ -126,21 +126,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $white-font-color: #ffffff;
+  $white-bg-color: #ffffff;
+  $page-bg-color: #232323;
+  $header-bg-color: #333333;
+  $label-font-color: #777777;
+  $silver-bg-color: #cccccc;
+  $inner-bg-color: #7B7D7D;
+  $toggle-btn-bg-color: #2980B9;
+  $toggle-hover-btn-bg-color: #5499C7;
+
+  %flex-layout {
+    display: flex;
+    display: -webkit-flex;
+  }
+  %flex-1 {
+    flex: 1;
+    -webkit-flex: 1;
+  }
+  %flex-2 {
+    flex: 2;
+    -webkit-flex: 2;
+  }
+  %margin-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  %symbol-font-bg-color {
+    color: $white-font-color;
+    background: $silver-bg-color;
+  }
+
   /* CSS */
   #color-box-page {
+    @extend %flex-layout;
     width: 93vw;
     padding: 10px;
     padding-top: 0;
-    background: #232323;
+    background: $page-bg-color;
     text-align: center;
     font-family: futura,helvetica,arial;
-    display: -webkit-flex;
-    display: flex;
     margin-left: 7vw;
     .header {
       height: 8vh;
       width: 91vw;
-      background-color: #333333;
+      background-color: $header-bg-color;
       position: fixed;
       z-index: 1000;
       text-align: left;
@@ -148,8 +178,7 @@ export default {
     }
 
     .header .current-color-bar {
-      display: flex;
-      display: -webkit-flex;
+      @extend %flex-layout;
       justify-content: space-between;
     }
     .header label {
@@ -157,13 +186,12 @@ export default {
       margin-right: 1vw;
       margin-left: 1vw;
       font-size: 800;
-      color: white;
+      color: $white-font-color;
       width: 15vw;
     }
     .header .current-color-box {
+      @extend %flex-layout;
       text-align: left;
-      display: flex;
-      display: -webkit-flex;
       line-height: 8vh;
       .current-color {
         height: 5vh;
@@ -171,11 +199,11 @@ export default {
         margin: 1.5vh 2vw;
         border-radius: 5px;
         line-height: 5vh;
-        color: #fff;
+        color: $white-font-color;
         text-align: center;
       }
       p {
-        color: white;
+        color: $white-font-color;
         font-size: 0.8em;
         margin-left: 1.5vw;
         -webkit-app-region: no-drag;
@@ -184,31 +212,28 @@ export default {
 
 
     .header .color-form {
-      background-color: #fff;
+      background-color: $white-bg-color;
       padding-top: 2vh;
       label {
-        color: #777777;
+        color: $label-font-color;
       }
       .hex-group,
       .rgb-group,
       .hsl-group {
-        display: flex;
-        display: -webkit-flex;
+        @extend %flex-layout;
         justify-content: flex-start;
         padding-bottom: 8px;
       }
       .rgb-group .rgb-input-group,
       .hsl-group .hsl-input-group{
-        display: flex;
-        display: -webkit-flex;
+        @extend %flex-layout;
         justify-content: flex-start;
       }
       .hex-group .hex-symbol {
+        @extend %symbol-font-bg-color;
         height: 8vh;
         font-size: 4vh;
         line-height: 8vh;
-        color: #fff;
-        background: #ccc;
         padding: 0 1vw;
       }
       .hex-group input {
@@ -231,11 +256,10 @@ export default {
       }
       .rgb-group .hsl-symbol,
       .hsl-group .hsl-symbol {
+        @extend %symbol-font-bg-color;
         font-size: 4vh;
         height: 8vh;
         line-height: 8vh;
-        color: #fff;
-        background: #ccc;
         padding: 0 1vw;
         margin-right: 10px;
       }
@@ -265,35 +289,31 @@ export default {
       line-height: 8vh;
       text-decoration: none;
       text-align: center;
-      color: #ffffff;
-      background-color: #2980B9;
+      color: $white-font-color;
+      background-color: $toggle-btn-bg-color;
       &:hover {
-        background-color: #5499C7;
+        background-color: $toggle-hover-btn-bg-color;
       }
     }
 
 
     .color-box-inner {
       // border: 20px solid #e6e6e6;
-      background-color: #7B7D7D;
-      margin-left: auto;
-      margin-right: auto;
-      -webkit-flex: 1;
-      flex: 1;
+      @extend %margin-center;
+      @extend %flex-1;
+      background-color: $inner-bg-color;
       width: 95vw;
       margin-top: 8vh;
       .color-content {
         text-align: center;
       }
       .color-content .color-row {
-        display: flex;
-        display: -webkit-flex;
+        @extend %flex-layout;
         justify-content: space-around;
         flex-direction: row
       }
       .color-content .color-row .color-item {
-        flex: 2;
-        -webkit-flex: 2;
+        @extend %flex-2;
         height: 10vh;
         vertical-align: middle;
         cursor: pointer;
