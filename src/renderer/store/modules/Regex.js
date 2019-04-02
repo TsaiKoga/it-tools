@@ -1,16 +1,23 @@
+import i18n from './../../i18n'
+
 const state = {
   tabs: [
-    { title: 'Home', isActive: true },
-    { title: 'Help', isActive: false }
+    { title: i18n.t('tabs.home'), isActive: true },
+    { title: i18n.t('tabs.help'), isActive: false }
   ],
-  currentTab: 'Home',
+  currentTab: i18n.t('tabs.home'),
   regexExp: '',
   regexOpt: '',
   regexCont: '',
-  regexResult: { status: 0, content: "Here's result." }
+  regexResult: { status: 0, content: i18n.t('regex.heresResult') }
 }
 
 const mutations = {
+  SET_INIT_STATE (state, payload) {
+    state.tabs = payload.tabs
+    state.currentTab = payload.currentTab
+    state.regexResult = payload.regexResult
+  },
   SET_NAV (state, payload) {
     state.tabs.forEach((tabs, i) => {
       if (i === payload.index) {
@@ -25,7 +32,7 @@ const mutations = {
     state.regexExp = ''
     state.regexOpt = ''
     state.regexCont = ''
-    state.regexResult = { status: 0, content: "Here's result." }
+    state.regexResult = { status: 0, content: i18n.t('regex.heresResult') }
   },
   REGEX_MATCH (state, target) {
     if (target.name === 'regex-exp') {
@@ -67,7 +74,7 @@ const mutations = {
         let result = state.regexCont.match(re)
 
         if (result === null) {
-          state.regexResult = { status: -1, content: 'No matches ...' }
+          state.regexResult = { status: -1, content: i18n.t('regex.noMatches') }
         } else {
           if (state.regexExp === '()') {
             let matchedContext = []
@@ -82,26 +89,29 @@ const mutations = {
           }
         }
       } else {
-        state.regexResult = { status: 0, content: "Here's the result." }
+        state.regexResult = { status: 0, content: i18n.t('regex.heresResult') }
       }
     } catch (err) {
       console.log(err.message)
       if (err.message.match(/expression/)) {
         if (err.message.match(/Unterminated\s+group/)) {
-          state.regexResult = { status: -1, content: 'You have an unmatched parenthesis.' }
+          state.regexResult = { status: -1, content: i18n.t('regex.uHaveAnUnmatchedPats') }
         } else {
-          state.regexResult = { status: -1, content: 'Expression Error' }
+          state.regexResult = { status: -1, content: i18n.t('regex.expError') }
         }
       } else if (err.message.match(/constructor/)) {
-        state.regexResult = { status: -1, content: 'Invalid Option' }
+        state.regexResult = { status: -1, content: i18n.t('regex.invalidOpt') }
       } else {
-        state.regexResult = { status: -1, content: 'No Matches' }
+        state.regexResult = { status: -1, content: i18n.t('regex.noMatches') }
       }
     }
   }
 }
 
 const actions = {
+  setInitState ({ commit }, payload) {
+    commit('SET_INIT_STATE', payload)
+  },
   setNav ({ commit }, payload) {
     commit('SET_NAV', payload)
   },

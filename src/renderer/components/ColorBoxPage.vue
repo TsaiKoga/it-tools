@@ -2,10 +2,10 @@
   <div id="color-box-page">
     <div class="header">
       <div class="current-color-bar">
-        <label>Current Color: </label>
+        <label>{{ $t('color.currentColor') }}: </label>
         <div class="current-color-box">
           <p v-if="currentColor['name'] !== ''">{{ currentColor['name'] }}</p>
-          <span class="current-color" :style="'background-color:' + currentColor['hex']" v-if="currentColor['hex']">Copied</span>
+          <span class="current-color" :style="'background-color:' + currentColor['hex']" v-if="currentColor['hex']">{{ $t('color.copied') }}</span>
           <p v-if="currentColor['hex'] !== ''">{{ 'HEX: ' + currentColor['hex'] }}</p>
           <p v-if="currentColor['rgb'] !== ''">{{ 'RGB(' + currentColor['rgb'] +')' }}</p>
           <p v-if="currentColor['hsl'] !== ''">{{ 'HSL(' + currentColor['hsl'] + ')' }}</p>
@@ -17,7 +17,7 @@
       <transition name="slide-down">
         <div class="color-form" v-if="toggleColorForm">
           <div class="hex-group">
-            <label>Input Hex: </label>
+            <label>{{ $t('color.inputHex') }}: </label>
             <span class="hex-symbol">#</span><input type="text" name="hex" class="colorHex" @input="inputHexColor">
 
             <div class="color-demo"
@@ -27,7 +27,7 @@
           </div>
 
           <div class="rgb-group">
-            <label>Input RGB: </label>
+            <label>{{ $t('color.inputRGB') }}: </label>
             <div class="rgb-input-group">
               <input type="number" name="rgb-r" min='0' max='255' class="colorRgb" placeholder="R" @input="inputRgbColor($event, 'r')">
               <input type="number" name="rgb-g" min='0' max='255' class="colorRgb" placeholder="G" @input="inputRgbColor($event, 'g')">
@@ -41,7 +41,7 @@
           </div>
 
           <div class="hsl-group">
-            <label>Input HSL: </label>
+            <label>{{ $t('color.inputHSL') }}: </label>
             <div class="hsl-input-group">
               <input type="number" name="hsl-h" class="colorHsl" @input="inputHslColor($event, 'h')">
               <input type="number" name="hsl-s" min='0' max='100' class="colorHsl" @input="inputHslColor($event, 's')">

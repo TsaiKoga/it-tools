@@ -1,10 +1,10 @@
 <template>
   <div class="json-result-help">
     <div class="btn-bar">
-      <div class="xml-btn" @click="toggleXML" v-if="!isXML"> TO XML </div>
-      <div class="xml-btn" @click="toggleXML" v-if="isXML"> TO JSON </div>
-      <div class="reset-btn" @click="resetInput"> Reset </div>
-      <div class="copy-btn" @click="copyObject"> Copy </div>
+      <div class="xml-btn" @click="toggleXML" v-if="!isXML"> {{ $t('json.toXML') }} </div>
+      <div class="xml-btn" @click="toggleXML" v-if="isXML"> {{ $t('json.toJSON') }} </div>
+      <div class="reset-btn" @click="resetInput"> {{ $t('json.reset') }} </div>
+      <div class="copy-btn" @click="copyObject"> {{ $t('json.copy') }} </div>
     </div>
     <div v-html="renderResult" ref="json-result-elem">
     </div>

@@ -1,10 +1,10 @@
 <template>
   <div id="regex-page">
     <tabs :tabsNav="tabsNav">
-      <div class="regex-inner" v-show="currentTab === 'Home'">
+      <div class="regex-inner" v-show="currentTab === $t('tabs.home')">
         <div class="regex-top">
           <div class="regex-top-label">
-            <label>Your regular expression:</label>
+            <label>{{ $t('regex.yourRegexExp') }}:</label>
           </div>
           <div class="regex-top-fields">
             <div class="regex-diagonal">/</div>
@@ -22,7 +22,7 @@
 
         <div class="regex-bottom">
           <div class="regex-content">
-            <label>Your test string: </label>
+            <label>{{ $t('regex.yourTestStr') }}: </label>
             <textarea class="regex-textarea" name="regex-content" @input="execRegex" :value='regexCont'></textarea>
           </div>
 
@@ -34,19 +34,19 @@
           <div class="result-content result-match" v-if="regexResult['status'] == 1">
             <div>
               <div class="regex-match-btn">
-                <label>Match Result:</label>
-                <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">Clean Fields</a>
+                <label>{{ $t('regex.matchResult') }}:</label>
+                <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">{{ $t('regex.clearFields') }}</a>
               </div>
               <div class="result-item">
                 <span v-for="(cont, indx) in regexResult['matchedContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
               </div>
             </div>
             <ul v-if="regexResult['content'].length > 0">
-              <label>Match Groups:</label>
+              <label>{{ $t('regex.matchGroups') }}:</label>
               <div class="match-groups">
                 <li v-for="(itemGroup, index) in regexResult['content']">
                   <div class="group-item">
-                    <label>Match Group {{ index + 1 }}:</label>
+                    <label>{{ $t('regex.matchGroup') }} {{ index + 1 }}:</label>
                     <ul>
                       <li v-if="i !== 0" v-for="(item, i) in itemGroup">{{ i }}: {{ item }}</li>
                     </ul>
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="regex-inner" v-show="currentTab !== 'Home'">
+      <div class="regex-inner" v-show="currentTab !== $t('tabs.home')">
         <regex-help></regex-help>
       </div>
     </tabs>
@@ -93,7 +93,8 @@ export default {
     ...mapActions('Regex', [
       'setNav',
       'cleanFields',
-      'regexMatch'
+      'regexMatch',
+      'setInitState'
     ]),
     cleanAllFields () {
       this.cleanFields()
@@ -103,10 +104,26 @@ export default {
     },
     updateNav (title, index) {
       this.setNav({ title: title, index: index })
+    },
+    setInitStateLang () {
+      if (this.$store.state.Regex.tabs[0]['title'] !== this.$i18n.t('tabs.home')) {
+        let payload = {}
+        payload.tabs = [
+          { title: this.$i18n.t('tabs.home'), isActive: true },
+          { title: this.$i18n.t('tabs.help'), isActive: false }
+        ]
+        payload.regexResult = { status: 0, content: this.$i18n.t('regex.heresResult') }
+        payload.currentTab = this.$i18n.t('tabs.home')
+        this.setInitState(payload)
+      }
     }
-
+  },
+  mounted () {
+    this.setInitStateLang()
+  },
+  updated () {
+    this.setInitStateLang()
   }
-
 }
 </script>
 

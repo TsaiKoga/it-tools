@@ -3,7 +3,7 @@
     <div class="tabs">
       <ul>
         <li v-for="(tab, index) in tabsNav"
-            :class="{'is-active': tab['isActive']}">
+            :class="{'is-active': tab['isActive']}" :key="tab['title']">
           <a href="javascript:void(0);" v-if="tab !== null" @click="goToTab(tab['title'], index)">
             {{ tab['title'] }}
           </a>

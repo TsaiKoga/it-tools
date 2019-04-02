@@ -5,9 +5,7 @@
         <textarea name="json-value"
                   class="json-textarea"
                   rows="8" cols="50"
-                  placeholder="Input your Json here.
-
-PS:The Key Value must be enclosed in double quotation marks."
+                  :placeholder="$t('json.inputJsonTip')"
                   :value="jsonStr"
                   @input="convertJsonToObj"></textarea>
       </div>

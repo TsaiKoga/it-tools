@@ -1,3 +1,5 @@
+import i18n from './../../i18n'
+
 const state = {
   jsonStr: '',
   jsonResult: '',
@@ -45,7 +47,7 @@ const mutations = {
       let rsltHtml = ''
       let indentI = indtIndx + 1
       if (state.error['code'] === -1) {
-        rsltHtml = '<div class="error">Error:</div> <div class="error-msg">' + state.error['msg'] + '</div><div class="error-pos-msg">This error occured near <p>' + state.error['posMsg'] + '</p> </div>'
+        rsltHtml = '<div class="error">' + i18n.t('json.error') + ':</div> <div class="error-msg">' + state.error['msg'] + '</div><div class="error-pos-msg">' + i18n.t('json.near') + ' <p>' + state.error['posMsg'] + '</p> </div>'
       } else if (Array.isArray(result)) {
         let arrayHtml = ''
         let arrayItemCount = 0
@@ -176,12 +178,12 @@ const mutations = {
         let comma = false
 
         let key = parseValue(true)
-        if (key === undefined) return errorTermination('the Key is undefined.')
+        if (key === undefined) return errorTermination(i18n.t('json.undefinedKey'))
         skipSpace()
-        if (state.jsonStr[i] !== `:`) return errorTermination('missing : ')
+        if (state.jsonStr[i] !== `:`) return errorTermination(i18n.t('json.missing') + ' : ')
         i++ // 跳过`:`
         value = parseValue()
-        if (value === undefined) return errorTermination('the value is undefined.')
+        if (value === undefined) return errorTermination(i18n.t('json.undefinedVal'))
         res[key] = value
         skipSpace()
         while (/[ ,]/.test(state.jsonStr[i]) && i < state.jsonStr.length - 1) {
@@ -189,11 +191,11 @@ const mutations = {
           i++ // 跳过`,`
         }
         skipSpace()
-        if (state.jsonStr[i] === `}` && comma) return errorTermination('missing key-value after comma.')
-        if (state.jsonStr[i] !== `}` && !comma) return errorTermination('missing comma: ,')
+        if (state.jsonStr[i] === `}` && comma) return errorTermination(i18n.t('json.missingKV'))
+        if (state.jsonStr[i] !== `}` && !comma) return errorTermination(i18n.t('json.missingComma') + ' : ,')
       }
 
-      if (state.jsonStr[i] !== `}`) return errorTermination('missing } ...')
+      if (state.jsonStr[i] !== `}`) return errorTermination(i18n.t('json.missing') + ' } ...')
       i++ // 跳过“}”
       return res
     }
@@ -212,11 +214,11 @@ const mutations = {
           i++ // 跳过`,`
         }
         skipSpace()
-        if (state.jsonStr[i] === `]` && comma) return errorTermination('missing element in array.')
-        if (state.jsonStr[i] !== `]` && !comma) return errorTermination('missing comma in array.')
+        if (state.jsonStr[i] === `]` && comma) return errorTermination(i18n.t('json.missingElemInArray'))
+        if (state.jsonStr[i] !== `]` && !comma) return errorTermination(i18n.t('json.missingCommaInArray'))
         if (/[ ,]/.test(state.jsonStr[i]) === false && value === undefined) return errorTermination('the element is undefined...')
       }
-      if (state.jsonStr[i] !== `]`) return errorTermination('missing ] ...')
+      if (state.jsonStr[i] !== `]`) return errorTermination(i18n.t('json.missing') + ' ] ...')
       i++ // 跳过结束“]”
       return res
     }
@@ -231,7 +233,7 @@ const mutations = {
         i++
       }
       res = state.jsonStr.slice(j, i)
-      if (state.jsonStr[i] !== `"`) return errorTermination('missing " ')
+      if (state.jsonStr[i] !== `"`) return errorTermination(i18n.t('json.missing') + ' " ')
       i++ // 跳过字符串结尾引号结束`"`
       return res
     }
@@ -242,14 +244,14 @@ const mutations = {
           i = i + 4
           return true
         } else {
-          return 'Error: It\'s not Boolean'
+          return i18n.t('json.notBool')
         }
       } else {
         if ((i + 4) < state.jsonStr.length && state.jsonStr[i + 1] === `a` && state.jsonStr[i + 2] === `l` && state.jsonStr[i + 3] === `s` && state.jsonStr[i + 4] === `e`) {
           i = i + 5
           return false
         } else {
-          return 'Error: It\'s not Boolean'
+          return i18n.t('json.notBool')
         }
       }
     }
@@ -261,7 +263,7 @@ const mutations = {
         i++
       }
       res = Number(state.jsonStr.slice(j, i))
-      if (isNaN(res)) return errorTermination('it\'s not number...')
+      if (isNaN(res)) return errorTermination(i18n.t('json.notNum'))
       return res
     }
 
@@ -277,7 +279,7 @@ const mutations = {
     }
 
     function errorTermination (msg) {
-      state.error = {'code': -1, 'posMsg': errorPosMsg(), 'msg': 'It seems that ' + msg}
+      state.error = {'code': -1, 'posMsg': errorPosMsg(), 'msg': i18n.t('json.seems') + msg}
       return state.error
     }
   },

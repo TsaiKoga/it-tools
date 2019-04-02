@@ -1,11 +1,12 @@
 import * as moment from 'moment'
+import i18n from './../../i18n'
 
 const state = {
   tabs: [
-    { title: 'Home', isActive: true },
-    { title: 'Help', isActive: false }
+    { title: i18n.t('tabs.home'), isActive: true },
+    { title: i18n.t('tabs.help'), isActive: false }
   ],
-  currentTab: 'Home',
+  currentTab: i18n.t('tabs.home'),
   timestampField: '',
   datetimeField: '',
   unit: 1,
@@ -14,6 +15,10 @@ const state = {
 }
 
 const mutations = {
+  SET_INIT_STATE (state, payload) {
+    state.tabs = payload.tabs
+    state.currentTab = payload.currentTab
+  },
   SET_NAV (state, payload) {
     state.tabs.forEach((tabs, i) => {
       if (i === payload.index) {
@@ -73,6 +78,10 @@ const mutations = {
 }
 
 const actions = {
+  setInitState ({ commit }, payload) {
+    commit('SET_INIT_STATE', payload)
+  },
+
   setNav ({ commit }, payload) {
     commit('SET_NAV', payload)
   },

@@ -1,57 +1,57 @@
 <template>
   <div class="regex-help">
     <div class="doc">
-      <h2>Regex quick reference</h2>
+      <h2>{{ $t('regexHelp.title') }}</h2>
       <div class="quick-ref">
         <table>
           <tbody>
 
           <tr>
-            <td>[abc]</td>	<td>A single character of: a, b, or c</td>
+            <td>[abc]</td>	<td>{{ $t('regexHelp.squareBracket') }}</td>
           </tr>
 
           <tr>
-            <td>[^abc]</td>	<td>Any single character except: a, b, or c</td>
+            <td>[^abc]</td>	<td>{{ $t('regexHelp.squareNot') }}</td>
           </tr>
 
           <tr>
-            <td>[a-z]</td>	<td>Any single character in the range a-z</td>
+            <td>[a-z]</td>	<td>{{ $t('regexHelp.squareAny') }}</td>
           </tr>
 
           <tr>
-            <td>[a-zA-Z]</td>	<td>Any single character in the range a-z or A-Z</td>
+            <td>[a-zA-Z]</td>	<td>{{ $t('regexHelp.squareRange') }}</td>
           </tr>
 
           <tr>
-            <td>^</td>	<td>Start of line</td>
+            <td>^</td>	<td>{{ $t('regexHelp.startOfLine') }}</td>
           </tr>
 
           <tr>
-            <td>$</td>	<td>End of line</td>
+            <td>$</td>	<td>{{ $t('regexHelp.endOfLine') }}</td>
           </tr>
 
           <tr>
-            <td>\A</td>	<td>Start of string</td>
+            <td>\A</td>	<td>{{ $t('regexHelp.startOfStr') }}</td>
           </tr>
 
           <tr>
-            <td>\z</td>	<td>End of string</td>
+            <td>\z</td>	<td>{{ $t('regexHelp.endOfStr') }}</td>
           </tr>
 
           <tr>
-            <td>.	</td> <td>Any single character</td>
+            <td>.	</td> <td>{{ $t('regexHelp.anyChar') }}</td>
           </tr>
 
           <tr>
-            <td>\s	</td><td>Any whitespace character</td>
+            <td>\s	</td><td>{{ $t('regexHelp.anyWSpace') }}</td>
           </tr>
 
           <tr>
-            <td>\S	</td><td>Any non-whitespace character</td>
+            <td>\S	</td><td>{{ $t('regexHelp.anyNWSpace') }}</td>
           </tr>
 
           <tr>
-            <td>\d	</td><td>Any digit</td>
+            <td>\d	</td><td>{{ $t('regexHelp.anyDigit') }}</td>
           </tr>
 
           </tbody>
@@ -61,68 +61,68 @@
           <tbody>
 
           <tr>
-            <td>\D</td><td>Any non-digit</td>
+            <td>\D</td><td>{{ $t('regexHelp.anyNDigit') }}</td>
           </tr>
 
           <tr>
-            <td>\w</td><td>Any word character (letter, number, underscore)</td>
+            <td>\w</td><td>{{ $t('regexHelp.anyWordChar') }}</td>
           </tr>
 
           <tr>
-            <td>\W</td><td>Any non-word character</td>
+            <td>\W</td><td>{{ $t('regexHelp.anyNWordChar') }}</td>
           </tr>
 
           <tr>
-            <td>\b</td><td>Any word boundary</td>
+            <td>\b</td><td>{{ $t('regexHelp.anyWordB') }}</td>
           </tr>
 
           <tr>
-            <td>(...)</td><td>Capture everything enclosed</td>
+            <td>(...)</td><td>{{ $t('regexHelp.capEnclosed') }}</td>
           </tr>
 
           <tr>
-            <td>(a|b)</td><td>a or b</td>
+            <td>(a|b)</td><td>{{ $t('regexHelp.or') }}</td>
           </tr>
 
           <tr>
-            <td>a?</td><td>Zero or one of a</td>
+            <td>a?</td><td>{{ $t('regexHelp.zeroOne') }}</td>
           </tr>
 
           <tr>
-            <td>a*</td><td>Zero or more of a</td>
+            <td>a*</td><td>{{ $t('regexHelp.moreThanZero') }}</td>
           </tr>
 
           <tr>
-            <td>a+</td><td>One or more of a</td>
+            <td>a+</td><td>{{ $t('regexHelp.moreThanOne') }}</td>
           </tr>
 
           <tr>
-            <td>a{3}</td><td>Exactly 3 of a</td>
+            <td>a{3}</td><td>{{ $t('regexHelp.exactly3') }}</td>
           </tr>
 
           <tr>
-            <td>a{3,}</td><td>3 or more of a</td>
+            <td>a{3,}</td><td>{{ $t('regexHelp.moreThan3') }}</td>
           </tr>
 
           <tr>
-            <td>a{3,6}</td><td>Between 3 and 6 of a</td>
+            <td>a{3,6}</td><td>{{ $t('regexHelp.between') }}</td>
           </tr>
           </tbody>
         </table>
       </div>
 
       <div class="regex-options">
-        <p>Options:</p>
+        <p>{{ $t('regexHelp.options') }}:</p>
         <p>
           <code>i</code>
-           case insensitive
+           {{ $t('regexHelp.caseI') }}
            <code>u</code>
-            treat pattern as a sequence of Unicode code points
+            {{ $t('regexHelp.unicode') }}
            <br/>
            <code>s</code>
-            allows . to match newlines
+            {{ $t('regexHelp.newLine') }}
            <code>y</code>
-            matches only from the index indicated by the lastIndex property of this regular expression in the target string (and does not attempt to match from any later indexes)
+            {{ $t('regexHelp.indexMatch') }}
         </p>
       </div>
     </div>

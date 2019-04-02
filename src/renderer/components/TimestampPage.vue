@@ -1,14 +1,14 @@
 <template>
   <div id="timestamp-page">
     <tabs :tabsNav="tabsNav">
-      <div class="timestamp-inner" v-show="currentTab === 'Home'">
+      <div class="timestamp-inner" v-show="currentTab === $t('tabs.home')">
         <div class="header">
-          <label>Choose the unit of time: </label>
+          <label>{{ $t('timestamp.unitTimeChosen') }}: </label>
           <select class="unit" name="unit" @change="selectUnit">
-            <option value=1 :selected="unit === 1" >Second</option>
-            <option value=1000 :selected="unit === 1000">Micro Second</option>
+            <option value=1 :selected="unit === 1" >{{ $t('timestamp.sec') }}</option>
+            <option value=1000 :selected="unit === 1000">{{ $t('timestamp.microSec') }}</option>
           </select>
-          <button type="button" name="reset" @click="resetAll">Reset</button>
+          <button type="button" name="reset" @click="resetAll">{{ $t('timestamp.reset') }}</button>
         </div>
 
         <div class="content">
@@ -17,11 +17,11 @@
               <div class="arrow-part">
               </div>
             </div>
-            <input type="text" name="timestamp" class="timestamp-input" :value="timestampField" placeholder="Input timestamp" @input="convertToDatetime" />
+            <input type="text" name="timestamp" class="timestamp-input" :value="timestampField" :placeholder="$t('timestamp.inputTimestamp')" @input="convertToDatetime" />
             <div class="arrow-body">
             </div>
             <div class="convert-datetime-field">
-              {{ datetimeResult || 'Datetime Result' }}
+              {{ datetimeResult || $t('timestamp.datetimeResult') }}
             </div>
             <div class="arrow-head">
               <div class="arrow-part">
@@ -38,11 +38,11 @@
               </div>
             </div>
             <div class="convert-timestamp-field">
-              {{ timestampResult || 'Timestamp Result' }}
+              {{ timestampResult || $t('timestamp.timestampResult') }}
             </div>
             <div class="arrow-body">
             </div>
-            <input type="text" name="datetime" class="datetime-input" :value="datetimeField" placeholder="Input datetime" @input="convertToTimestamp" />
+            <input type="text" name="datetime" class="datetime-input" :value="datetimeField" :placeholder="$t('timestamp.inputDatetime')" @input="convertToTimestamp" />
             <div class="arrow-footer">
               <div class="arrow-part">
               </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="timestamp-inner" v-show="currentTab !== 'Home'">
+      <div class="timestamp-inner" v-show="currentTab !== $t('tabs.home')">
         <tstamp-help></tstamp-help>
       </div>
     </tabs>
@@ -74,6 +74,7 @@ export default {
   },
   methods: {
     ...mapActions('TStamp', [
+      'setInitState',
       'setNav',
       'resetInput',
       'setUnit',
@@ -94,6 +95,17 @@ export default {
     },
     updateNav (title, index) {
       this.setNav({ title: title, index: index })
+    },
+    setInitStateLang () {
+      if (this.$store.state.TStamp.tabs[0]['title'] !== this.$i18n.t('tabs.home')) {
+        let payload = {}
+        payload.tabs = [
+          { title: this.$i18n.t('tabs.home'), isActive: true },
+          { title: this.$i18n.t('tabs.help'), isActive: false }
+        ]
+        payload.currentTab = this.$i18n.t('tabs.home')
+        this.setInitState(payload)
+      }
     }
   },
   computed: {
@@ -105,6 +117,12 @@ export default {
       timestampResult: state => state.timestampResult,
       timestampField: state => state.timestampField,
       datetimeField: state => state.datetimeField})
+  },
+  mounted () {
+    this.setInitStateLang()
+  },
+  updated () {
+    this.setInitStateLang()
   }
 }
 </script>
