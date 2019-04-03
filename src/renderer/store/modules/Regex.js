@@ -63,47 +63,75 @@ const mutations = {
       if (beginPos !== result['input'].length) {
         matchedContext.push(result['input'].slice(beginPos, result['input'].length))
       }
-      state.regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
+      let regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
+      return regexResult
     }
 
     // Do the Regex Match:
-    try {
-      if (state.regexCont !== '' && state.regexExp !== '') {
+    function execMatchContent (state, regexCont) {
+      let regexResult
+      try {
         let re = new RegExp(state.regexExp, state.regexOpt)
         let reGb = new RegExp(state.regexExp, state.regexOpt + 'g')
-        let result = state.regexCont.match(re)
+        let result = regexCont.match(re)
 
         if (result === null) {
-          state.regexResult = { status: -1, content: i18n.t('regex.noMatches') }
+          regexResult = { status: -1, content: i18n.t('regex.noMatches'), matchedContext: regexCont }
         } else {
           if (state.regexExp === '()') {
             let matchedContext = []
-            state.regexCont.split('').forEach((val, index) => {
+            regexCont.split('').forEach((val, index) => {
               matchedContext.push(val)
               matchedContext.push('')
             })
-            let matchedGroups = [...Array(state.regexCont.length)].map(() => [state.regexCont, ''])
-            state.regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
+            let matchedGroups = [...Array(regexCont.length)].map(() => [regexCont, ''])
+            regexResult = { status: 1, content: matchedGroups, matchedContext: matchedContext }
           } else {
-            matchContext(reGb, result, result.length)
+            regexResult = matchContext(reGb, result, result.length)
           }
         }
-      } else {
-        state.regexResult = { status: 0, content: i18n.t('regex.heresResult') }
-      }
-    } catch (err) {
-      console.log(err.message)
-      if (err.message.match(/expression/)) {
-        if (err.message.match(/Unterminated\s+group/)) {
-          state.regexResult = { status: -1, content: i18n.t('regex.uHaveAnUnmatchedPats') }
+      } catch (err) {
+        console.log(err.message)
+        if (err.message.match(/expression/)) {
+          if (err.message.match(/Unterminated\s+group/)) {
+            regexResult = { status: -1, content: i18n.t('regex.uHaveAnUnmatchedPats'), matchedContext: regexCont }
+          } else {
+            regexResult = { status: -1, content: i18n.t('regex.expError'), matchedContext: regexCont }
+          }
+        } else if (err.message.match(/constructor/)) {
+          regexResult = { status: -1, content: i18n.t('regex.invalidOpt'), matchedContext: regexCont }
         } else {
-          state.regexResult = { status: -1, content: i18n.t('regex.expError') }
+          regexResult = { status: -1, content: i18n.t('regex.noMatches'), matchedContext: regexCont }
         }
-      } else if (err.message.match(/constructor/)) {
-        state.regexResult = { status: -1, content: i18n.t('regex.invalidOpt') }
-      } else {
-        state.regexResult = { status: -1, content: i18n.t('regex.noMatches') }
       }
+      return regexResult
+    }
+
+    if (state.regexCont === '' || state.regexExp === '') {
+      state.regexResult = { status: 0, content: i18n.t('regex.heresResult') }
+    } else {
+      let regexResults = []
+      // loop more sample test content
+      state.regexCont.split('\n').forEach((content) => {
+        regexResults.push(execMatchContent(state, content))
+      })
+      let matchedContexts = []
+      let contents = []
+      let errorFlag = 1
+      console.log(regexResults)
+      regexResults.forEach((result) => {
+        if (result['status'] === 1) {
+          if (result['content'].length > 0) contents = contents.concat(result['content'])
+          errorFlag = 0
+        }
+        matchedContexts.push(result['matchedContext'])
+      })
+      if (errorFlag === 0) {
+        state.regexResult = { status: 1, content: contents, matchedContext: matchedContexts }
+      } else {
+        state.regexResult = regexResults[0]
+      }
+      console.log(state.regexResult)
     }
   }
 }

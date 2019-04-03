@@ -38,7 +38,10 @@
                 <a href="javascript:void(0)" class="clean-fields" @click="cleanAllFields">{{ $t('regex.clearFields') }}</a>
               </div>
               <div class="result-item">
-                <span v-for="(cont, indx) in regexResult['matchedContext']" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
+                <div v-for="contArray in regexResult['matchedContext']">
+                  <span v-if="!Array.isArray(contArray)">{{ contArray }}</span>
+                  <span v-else v-for="(cont, indx) in contArray" :class="indx%2 !== 0 ? 'match' : null">{{ cont }}</span>
+                </div>
               </div>
             </div>
             <ul v-if="regexResult['content'].length > 0">
