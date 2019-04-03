@@ -54,7 +54,7 @@ export const cn = {
     moreThanOne: '大于 1 个 a',
     exactly3: '正好 3 个 a',
     moreThan3: '大于 3 个 a',
-    between: '3 个或 6 个 a',
+    between: '3 到 6 个 a',
 
     options: '选项',
     caseI: '不区分大小写',
