@@ -21,7 +21,18 @@ English | [<a href="https://github.com/TsaiKoga/it-tools/blob/master/README_CN.m
 
 Now this project including Regex Tool, Timestamp Converter, Color Box, Json Parser.
 
+## Features
+
+- Regex Tool
+- Timestamp Converter
+- Color Box
+- JSON Parser
+
+### Try It
 [Download](https://github.com/TsaiKoga/it-tools/releases)
+
+[Online Demo](https://tsaikoga.github.com/it-tools/web/index.html)
+
 
 ### Preview
 

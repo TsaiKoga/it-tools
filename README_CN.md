@@ -21,7 +21,19 @@
 
 这个工具目前包括“正则表达式”、“时间戳转化”、“颜色盒子”、“Json转化”
 
-[点此下载](https://github.com/TsaiKoga/it-tools/releases)
+
+### 特点
+
+- 正则表达式
+- 时间戳转化
+- 颜色盒子
+- JSON 转化
+
+
+### 试一下
+[下载桌面应用](https://github.com/TsaiKoga/it-tools/releases)
+
+[在线演示](https://tsaikoga.github.com/it-tools/web/index.html)
 
 
 ### 预览
