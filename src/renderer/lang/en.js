@@ -99,6 +99,7 @@ export const en = {
     undefinedKey: 'the Key is undefined.',
     near: 'This error occured near',
     notBool: 'Error: It\'s not Boolean',
+    notNull: 'Error: It\'s not null',
     notNum: 'it\'s not number...',
     inputJsonTip: 'Input your Json here.\n\nPS:The Key Value must be enclosed in double quotation marks.'
   }

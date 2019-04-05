@@ -68,9 +68,15 @@ const mutations = {
             }
           } else if (typeof item === 'boolean') {
             if (index < (result.length - 1)) {
-              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-boolean">"' + item + '"</span>,<br>'
+              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-boolean">' + item + '</span>,<br>'
             } else {
-              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-boolean">"' + item + '"</span><br>'
+              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-boolean">' + item + '</span><br>'
+            }
+          } else if (item === null) {
+            if (index < (result.length - 1)) {
+              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-null">' + item + '</span>,<br>'
+            } else {
+              itemHtml = indentSym.repeat(indentCount * indentI) + '<span class="json-null">' + item + '</span><br>'
             }
           } else {
             if (index < (result.length - 1)) {
@@ -109,6 +115,12 @@ const mutations = {
             } else {
               resultVal = '<span class="json-string">"' + unicodeToChinese(escapeString(keyval[1])) + '"</span><br>'
             }
+          } else if (keyval[1] === null) {
+            if (index < (Object.entries(result).length - 1)) {
+              resultVal = '<span class="json-null">null</span>,<br>'
+            } else {
+              resultVal = '<span class="json-null">null</span><br>'
+            }
           } else {
             if (index < (Object.entries(result).length - 1)) {
               resultVal = renderHtml(keyval[1], indentI) + ',<br>'
@@ -130,9 +142,6 @@ const mutations = {
     }
 
     function parseValue (isKey = false) {
-      // while (/[ \n\r\t\b]/.test(state.jsonStr[i])) {
-      //   i++ // 跳过空白
-      // }
       skipSpace()
       if (isKey) {
         if (state.jsonStr[i] === `"`) {
@@ -159,8 +168,7 @@ const mutations = {
             return parseBoolean()
           }
           if (state.jsonStr[i] === `n`) {
-            i = i + 4
-            return null
+            return parserNull()
           }
           if (/[0-9.e\-+]/i.test(state.jsonStr[i])) {
             return parseNumber()
@@ -174,6 +182,7 @@ const mutations = {
     function parseObject () {
       let res = {}
       let value
+      skipSpace()
       while (state.jsonStr[i] !== `}` && i < state.jsonStr.length) {
         let comma = false
 
@@ -203,6 +212,7 @@ const mutations = {
     function parseArray () {
       let res = []
       let value
+      skipSpace()
       while (state.jsonStr[i] !== `]` && i < state.jsonStr.length - 1) {
         let comma = false
 
@@ -267,8 +277,17 @@ const mutations = {
       return res
     }
 
+    function parserNull () {
+      if ((i + 3) < state.jsonStr.length && state.jsonStr[i] === `n` && state.jsonStr[i + 1] === `u` && state.jsonStr[i + 2] === `l` && state.jsonStr[i + 3] === `l`) {
+        i = i + 4
+        return null
+      } else {
+        return i18n.t('json.notNull')
+      }
+    }
+
     function skipSpace () {
-      while (/\s/.test(state.jsonStr[i]) && i < state.jsonStr.length - 1) {
+      while (/[ \n\r\t\b]/.test(state.jsonStr[i]) && i < state.jsonStr.length - 1) {
         i++ // 跳过空白
       }
     }

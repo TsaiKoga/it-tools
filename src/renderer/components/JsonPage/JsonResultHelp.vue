@@ -83,6 +83,7 @@ export default {
   $json-number-color: #25aae2;
   $json-string-color: #29b973;
   $json-boolean-color: #f18f01;
+  $json-null-color: #F4D03F;
   $fold-btn-on-color: #999999;
   $error-msg-color: #D4AC0D;
   $btn-bar-border-color: #0f202d;
@@ -124,6 +125,9 @@ export default {
     }
     .json-boolean {
       color: $json-boolean-color;
+    }
+    .json-null {
+      color: $json-null-color;
     }
     .foldBtnOn {
       color: $fold-btn-on-color;
