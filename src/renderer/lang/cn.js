@@ -12,7 +12,7 @@ export const cn = {
     regex: '正',
     time: '时',
     color: '色',
-    json: '简'
+    json: '键'
   },
   // Regex Tool
   regex: {
