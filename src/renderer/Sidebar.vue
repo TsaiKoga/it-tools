@@ -17,6 +17,9 @@
           <router-link :to="{name: 'json-page'}">
             <li :class="{'active': $route.name === 'json-page'}">{{ $t('sidebar.jsonParser') }}</li>
           </router-link>
+          <router-link :to="{name: 'image64-page'}">
+            <li :class="{'active': $route.name === 'image64-page'}">{{ $t('sidebar.base64Converter') }}</li>
+          </router-link>
         </ul>
 
         <div class="lang broadLang">
@@ -43,6 +46,9 @@
           </router-link>
           <router-link :to="{name: 'json-page'}">
             <li :class="{'active': $route.name === 'json-page'}">{{ $t('sidebar.json') }}</li>
+          </router-link>
+          <router-link :to="{name: 'image64-page'}">
+            <li :class="{'active': $route.name === 'image64-page'}">{{ $t('sidebar.image64') }}</li>
           </router-link>
         </ul>
 

@@ -9,10 +9,12 @@ export const en = {
     timestampConverter: 'Timestamp Converter',
     colorBox: 'Color Box',
     jsonParser: 'Json Parser',
+    base64Converter: 'Base64 Converter',
     regex: 'Regex',
     time: 'Time',
     color: 'Color',
-    json: 'Json'
+    json: 'Json',
+    image64: 'Image'
   },
   // Regex Tool
   regex: {
@@ -102,5 +104,12 @@ export const en = {
     notNull: 'Error: It\'s not null',
     notNum: 'it\'s not number...',
     inputJsonTip: 'Input your Json here.\n\nPS:The Key Value must be enclosed in double quotation marks.'
+  },
+  // Image Converter
+  image64: {
+    copy: 'COPY',
+    clean: 'CLEAN',
+    dragImgHere: 'Drag your 😺 image here. Base64 👉',
+    inputBase64Here: 'You can input Base64 code here, and the image will be shown 👈.'
   }
 }

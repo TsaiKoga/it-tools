@@ -9,10 +9,12 @@ export const cn = {
     timestampConverter: '时间戳转化',
     colorBox: '颜色盒子',
     jsonParser: 'JSON 转化',
+    base64Converter: 'Base64 转化',
     regex: '正',
     time: '时',
     color: '色',
-    json: '键'
+    json: '键',
+    image64: '图'
   },
   // Regex Tool
   regex: {
@@ -101,5 +103,12 @@ export const cn = {
     notNum: '非数值number...',
     notNull: '错误：非 null 值',
     inputJsonTip: '此处输入 JSON 字符串\n\n注意: 键值对要用双引号括起来'
+  },
+  // Image Converter
+  image64: {
+    copy: '复制',
+    clean: '清除',
+    dragImgHere: '拖动 😺 图片到此处，Base64 👉',
+    inputBase64Here: '您也可以在这里输入 Base64 码，图片将会显示 👈'
   }
 }

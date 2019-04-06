@@ -29,6 +29,11 @@ export default new Router({
       path: '/json-page',
       name: 'json-page',
       component: require('@/components/JsonPage').default
+    },
+    {
+      path: '/image64-page',
+      name: 'image64-page',
+      component: require('@/components/Image64Page').default
     }
   ]
 })
