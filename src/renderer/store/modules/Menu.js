@@ -14,6 +14,7 @@ const mutations = {
       state.lang = 'cn'
     }
     i18n.locale = state.lang
+    window.localStorage.setItem('locale', state.lang)
   }
 }
 
