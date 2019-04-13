@@ -18,37 +18,57 @@
         <div class="color-form" v-if="toggleColorForm">
           <div class="hex-group">
             <label>{{ $t('color.inputHex') }}: </label>
-            <span class="hex-symbol">#</span><input type="text" name="hex" class="colorHex" @input="inputHexColor">
+            <div class="hex-input-group">
+              <span class="hex-symbol">#</span><input type="text" name="hex" class="colorHex" @input="inputHexColor" :value="colorHex">
+            </div>
 
-            <div class="color-demo"
-                :style="'background-color: #' + colorHex "
-                v-if="(colorHex !== '') && (colorHex.length === 3 || colorHex.length === 6)"
-            ></div>
+            <div class="color-demo-container">
+              <div class="color-demo"
+                  :style="'background-color: #' + colorHex "
+                  v-if="(colorHex !== '') && (colorHex.length === 3 || colorHex.length === 6)"
+              ></div>
+            </div>
           </div>
 
           <div class="rgb-group">
             <label>{{ $t('color.inputRGB') }}: </label>
-            <div class="rgb-input-group">
-              <input type="number" name="rgb-r" min='0' max='255' class="colorRgb" placeholder="R" @input="inputRgbColor($event, 'r')">
-              <input type="number" name="rgb-g" min='0' max='255' class="colorRgb" placeholder="G" @input="inputRgbColor($event, 'g')">
-              <input type="number" name="rgb-b" min='0' max='255' class="colorRgb" placeholder="B" @input="inputRgbColor($event, 'b')">
-
+            <div class="rgb-ranges-group">
+              <span class="rgb-range-input-group">
+                <input type="range" min="0" max="255" @input="inputRgbColor($event, 'r')" :value="colorRgb.split(',')[0]">
+                <span class="rgb-symbol">R</span>
+                <input class="rgb-value" type="number" min="0" max="255" :value="colorRgb.split(',')[0]" @input="inputRgbColor($event, 'r')" />
+              </span><br>
+              <span class="rgb-range-input-group">
+                <input type="range" min="0" max="255" @input="inputRgbColor($event, 'g')" :value="colorRgb.split(',')[1]">
+                <span class="rgb-symbol">G</span>
+                <input class="rgb-value" type="number" min="0" max="255" :value="colorRgb.split(',')[1]" @input="inputRgbColor($event, 'g')" />
+              </span><br>
+              <span class="rgb-range-input-group">
+                <input type="range" min="0" max="255" @input="inputRgbColor($event, 'b')" :value="colorRgb.split(',')[2]">
+                <span class="rgb-symbol">B</span>
+                <input class="rgb-value" type="number" min="0" max="255" :value="colorRgb.split(',')[2]" @input="inputRgbColor($event, 'b')" />
+              </span><br>
+            </div>
+            <div class="color-demo-container">
               <div class="color-demo"
                 :style="'background-color: rgb(' + colorRgb +')' "
                 v-if="(colorRgb !== '')"
-              ></div>
+              >
+              </div>
             </div>
           </div>
 
           <div class="hsl-group">
             <label>{{ $t('color.inputHSL') }}: </label>
             <div class="hsl-input-group">
-              <input type="number" name="hsl-h" class="colorHsl" @input="inputHslColor($event, 'h')">
-              <input type="number" name="hsl-s" min='0' max='100' class="colorHsl" @input="inputHslColor($event, 's')">
+              <input type="number" name="hsl-h" min='0' max='360' class="colorHsl" @input="inputHslColor($event, 'h')" :value="colorHsl.split(',')[0]">
+              <input type="number" name="hsl-s" min='0' max='255' class="colorHsl" @input="inputHslColor($event, 's')" :value="colorHsl.split(',')[1].split('%')[0]">
               <span class="hsl-symbol">%</span>
-              <input type="number" name="hsl-l" min='0' max='100' class="colorHsl" @input="inputHslColor($event, 'l')">
+              <input type="number" name="hsl-l" min='0' max='255' class="colorHsl" @input="inputHslColor($event, 'l')" :value="colorHsl.split(',')[2].split('%')[0]">
               <span class="hsl-symbol">%</span>
+            </div>
 
+            <div class="color-demo-container">
               <div class="color-demo"
                   :style="'background-color: hsl(' + colorHsl + ');'"
                   v-if="(colorHsl !== '')"
@@ -156,6 +176,14 @@ export default {
     color: $white-font-color;
     background: $silver-bg-color;
   }
+  %flex-vertical-middle {
+    display: -webkit-flex;
+    display:         flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center
+  }
 
   /* CSS */
   #color-box-page {
@@ -241,7 +269,13 @@ export default {
         width: 11vw;
         font-size: 4vh;
       }
-      .rgb-group input,
+      // range-input
+      .rgb-group input {
+        height: 5vh;
+        width: 15vw;
+        font-size: 4vh;
+        padding-left: 0;
+      }
       .hsl-group input {
         height: 8vh;
         width: 8vw;
@@ -254,7 +288,6 @@ export default {
       .hsl-group input[name="hsl-h"] {
         margin-right: 10px;
       }
-      .rgb-group .hsl-symbol,
       .hsl-group .hsl-symbol {
         @extend %symbol-font-bg-color;
         font-size: 4vh;
@@ -263,12 +296,47 @@ export default {
         padding: 0 1vw;
         margin-right: 10px;
       }
+      .hex-input-group {
+        @extend %flex-layout;
+        width: 50vw;
+      }
+      .hsl-input-group {
+        @extend %flex-layout;
+        width: 50vw;
+      }
+      .rgb-group .rgb-range-input-group {
+        @extend %flex-layout;
+        width: 50vw;
+        height: 5vh;
+        .rgb-symbol {
+          @extend %symbol-font-bg-color;
+          display: inline-block;
+          font-size: 3vh;
+          height: 5vh;
+          line-height: 5vh;
+          width: 4vw;
+          text-align: center;
+          border: 1px solid $silver-bg-color;
+        }
+        .rgb-value {
+          display: inline-block;
+          font-size: 3vh;
+          height: 5vh;
+          line-height: 5vh;
+          width: 5vw;
+          text-align: center;
+          border: 1px solid $silver-bg-color;
+          color: $silver-bg-color;
+        }
+      }
+      .color-demo-container {
+        @extend %flex-vertical-middle;
+      }
       .color-demo {
         height: 8vh;
+        line-height: 8vh;
         width: 10vw;
         border-radius: 5px;
-        position: absolute;
-        right: 5vw;
       }
     }
     .slide-down-enter-active {
@@ -298,7 +366,6 @@ export default {
 
 
     .color-box-inner {
-      // border: 20px solid #e6e6e6;
       @extend %margin-center;
       @extend %flex-1;
       background-color: $inner-bg-color;

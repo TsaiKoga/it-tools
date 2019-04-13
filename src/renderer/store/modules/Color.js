@@ -222,9 +222,9 @@ const state = {
   ],
   currentColor: { hex: '', rgb: '', hsl: '', name: '', index: 0 },
   toggleColorForm: false,
-  colorHex: '',
-  colorRgb: '',
-  colorHsl: ''
+  colorHex: 'ffffff',
+  colorRgb: '255,255,255',
+  colorHsl: '0,0%,100%'
 }
 
 const mutations = {
@@ -241,9 +241,51 @@ const mutations = {
     state.toggleColorForm = !state.toggleColorForm
   },
   SET_HEX_COLOR (state, value) {
-    state.colorHex = value
+    function hexToRgb (hex) {
+      // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+      let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
+      hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+        return r + r + g + g + b + b
+      })
+
+      let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ] : null
+    }
+
+    function rgb2hsl (r, g, b) {
+      let a = Math.max(r, g, b)
+      let n = a - Math.min(r, g, b)
+      let f = (1 - Math.abs(a + a - n - 1))
+      let h = n && ((a === r) ? (g - b) / n : ((a === g) ? 2 + (b - r) / n : 4 + (r - g) / n))
+      return [60 * (h < 0 ? h + 6 : h), f ? n / f : 0, (a + a - n) / 2]
+    }
+
+    try {
+      state.colorHex = value
+      state.colorRgb = hexToRgb(state.colorHex).join(',')
+      let rgbArrayBase = state.colorRgb.split(',').map((rgb) => rgb / 255)
+      state.colorHsl = rgb2hsl(...rgbArrayBase).map((hsl, index) => {
+        return index ? (hsl * 100).toFixed(0) + '%' : hsl.toFixed(0)
+      }).join(',')
+    } catch (err) {
+      console.log(err.message)
+    }
   },
+
   SET_RGB_COLOR (state, payload) {
+    function rgb2hsl (r, g, b) {
+      let a = Math.max(r, g, b)
+      let n = a - Math.min(r, g, b)
+      let f = (1 - Math.abs(a + a - n - 1))
+      let h = n && ((a === r) ? (g - b) / n : ((a === g) ? 2 + (b - r) / n : 4 + (r - g) / n))
+      return [60 * (h < 0 ? h + 6 : h), f ? n / f : 0, (a + a - n) / 2]
+    }
+    let rgb2hex = (r, g, b) => [r, g, b].map(x => Math.round(x * 255).toString(16).padStart(2, 0)).join('')
+
     try {
       let rgbArray = state.colorRgb.split(',')
       if (payload.sym === 'r') {
@@ -253,29 +295,45 @@ const mutations = {
       } else if (payload.sym === 'b') {
         rgbArray[2] = payload.value
       } else {
-        rgbArray = []
+        rgbArray = [255, 255, 255]
       }
+      let rgbArrayBase = rgbArray.map((rgb) => rgb / 255)
       state.colorRgb = rgbArray.join(',')
+      state.colorHex = rgb2hex(...rgbArrayBase)
+      state.colorHsl = rgb2hsl(...rgbArrayBase).map((hsl, index) => {
+        return index ? (hsl * 100).toFixed(0) + '%' : hsl.toFixed(0)
+      }).join(',')
     } catch (err) {
-      console.log(err)
+      console.log(err.message)
     }
   },
+
   SET_HSL_COLOR (state, payload) {
+    let hsl2rgb = (h, s, l, a = s * Math.min(l, 1 - l), f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1)) => [f(0), f(8), f(4)]
+    let rgb2hex = (r, g, b) => [r, g, b].map(x => Math.round(x * 255).toString(16).padStart(2, 0)).join('')
     try {
       let hslArray = state.colorHsl.split(',')
+      let hslArrayBase = hslArray.map((hsl, i) => {
+        return i ? (hsl.split('%')[0] / 100) : hsl
+      })
       if (payload.sym === 'h') {
         hslArray[0] = payload.value
+        hslArrayBase[0] = payload.value
       } else if (payload.sym === 's') {
         hslArray[1] = payload.value + '%'
+        hslArrayBase[1] = payload.value / 100
       } else if (payload.sym === 'l') {
         hslArray[2] = payload.value + '%'
+        hslArrayBase[2] = payload.value / 100
       } else {
-        hslArray = []
+        hslArray = ['0', '0%', '100%']
       }
       state.colorHsl = hslArray.join(',')
-      console.log(state.colorHsl)
+      state.colorRgb = hsl2rgb(...hslArrayBase).map(x => x * 255 | 0).join(',')
+      let rgbArrayBase = state.colorRgb.split(',').map((rgb) => rgb / 255)
+      state.colorHex = rgb2hex(...rgbArrayBase)
     } catch (err) {
-      console.log(err)
+      console.log(err.message)
     }
   }
 }
