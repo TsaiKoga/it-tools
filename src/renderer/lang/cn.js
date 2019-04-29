@@ -102,6 +102,7 @@ export const cn = {
     notBool: '错误: 非 Boolean 值',
     notNum: '非数值number...',
     notNull: '错误：非 null 值',
+    moreBehind: '后面多了字符',
     inputJsonTip: '此处输入 JSON 字符串\n\n注意: 键值对要用双引号括起来'
   },
   // Image Converter

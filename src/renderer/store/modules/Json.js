@@ -28,6 +28,10 @@ const mutations = {
 
     state.error = { 'code': 0, 'msg': '' }
     state.jsonResult = parseValue()
+    skipSpace()
+    if (i < state.jsonStr.length) {
+      state.jsonResult = errorTermination(i18n.t('json.moreBehind'))
+    }
     state.jsonHtml = renderHtml(state.jsonResult, indentInit)
     state.isXML = false
 
@@ -287,7 +291,7 @@ const mutations = {
     }
 
     function skipSpace () {
-      while (/[ \n\r\t\b]/.test(state.jsonStr[i]) && i < state.jsonStr.length - 1) {
+      while (/[ \n\r\t\b]/.test(state.jsonStr[i]) && i < state.jsonStr.length) {
         i++ // 跳过空白
       }
     }

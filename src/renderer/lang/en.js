@@ -103,6 +103,7 @@ export const en = {
     notBool: 'Error: It\'s not Boolean',
     notNull: 'Error: It\'s not null',
     notNum: 'it\'s not number...',
+    moreBehind: 'More character in the end',
     inputJsonTip: 'Input your Json here.\n\nPS:The Key Value must be enclosed in double quotation marks.'
   },
   // Image Converter
