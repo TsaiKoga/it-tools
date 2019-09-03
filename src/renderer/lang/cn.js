@@ -45,6 +45,9 @@ export const cn = {
     anyWSpace: '任意空白字符',
     anyNWSpace: '任意非空白字符',
     anyDigit: '任意数字',
+    stopAtFirstA: '非贪婪：只在第一个 a 停止',
+    matchBeforeTom: '匹配 Tom 前面的字符',
+
     anyNDigit: '任意非数字',
     anyWordChar: '任何词语字符 (字母, 数字, 下划线)',
     anyNWordChar: '任意非词语字符',
@@ -57,6 +60,8 @@ export const cn = {
     exactly3: '正好 3 个 a',
     moreThan3: '大于 3 个 a',
     between: '3 到 6 个 a',
+    matchTom: '匹配 Tom',
+    matchBehindTom: '匹配 Tom 后面的字符',
 
     options: '选项',
     caseI: '不区分大小写',
@@ -111,5 +116,9 @@ export const cn = {
     clean: '清除',
     dragImgHere: '拖动 😺 图片到此处，Base64 👉',
     inputBase64Here: '您也可以在这里输入 Base64 码，图片将会显示 👈'
+  },
+  cron: {
+    heresResult: '这里显示结果',
+    expError: '表达式错误'
   }
 }

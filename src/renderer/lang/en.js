@@ -45,6 +45,9 @@ export const en = {
     anyWSpace: 'Any whitespace character',
     anyNWSpace: 'Any non-whitespace character',
     anyDigit: 'Any digit',
+    stopAtFirstA: 'Not greedy: Stop at first a',
+    matchBeforeTom: 'Match char before Tom',
+
     anyNDigit: 'Any non-digit',
     anyWordChar: 'Any word character (letter, number, underscore)',
     anyNWordChar: 'Any non-word character',
@@ -57,6 +60,8 @@ export const en = {
     exactly3: 'Exactly 3 of a',
     moreThan3: '3 or more of a',
     between: 'Between 3 and 6 of a',
+    matchTom: 'Only match Tom',
+    matchBehindTom: 'Match char behind Tom',
 
     options: 'Options',
     caseI: 'case insensitive',
@@ -112,5 +117,10 @@ export const en = {
     clean: 'CLEAN',
     dragImgHere: 'Drag your 😺 image here. Base64 👉',
     inputBase64Here: 'You can input Base64 code here, and the image will be shown 👈.'
+  },
+  // crontab
+  cron: {
+    heresResult: 'Here\'s result.',
+    expError: 'Expression error.'
   }
 }

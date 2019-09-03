@@ -54,7 +54,14 @@
             <td>\d	</td><td>{{ $t('regexHelp.anyDigit') }}</td>
           </tr>
 
-          </tbody>
+          <tr>
+            <td>a.+?</td><td>{{ $t('regexHelp.stopAtFirstA') }}</td>
+          </tr>
+
+          <tr>
+            <td>(?=Tom)</td><td>{{ $t('regexHelp.matchBeforeTom') }}</td>
+          </tr>
+        </tbody>
         </table>
 
         <table>
@@ -107,6 +114,14 @@
           <tr>
             <td>a{3,6}</td><td>{{ $t('regexHelp.between') }}</td>
           </tr>
+
+          <tr>
+            <td>(?:Tom)</td><td>{{ $t('regexHelp.matchTom') }}</td>
+          </tr>
+
+          <tr>
+            <td>(?<=Tom)</td><td>{{ $t('regexHelp.matchBehindTom') }}</td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -144,6 +159,7 @@ export default {
   }
 
   .regex-help {
+    font-family: Nunito,Helvetica Neue,Helvetica,Arial,sans-serif;
     .doc {
       h2 {
         text-align: center;
@@ -156,7 +172,7 @@ export default {
         width: 45vw;
       }
       table tr {
-        height: 4vh;
+        height: 3.7vh;
       }
       .regex-options {
         @extend %flex-layout;
