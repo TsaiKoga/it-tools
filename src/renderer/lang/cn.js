@@ -10,11 +10,13 @@ export const cn = {
     colorBox: '颜色盒子',
     jsonParser: 'JSON 转化',
     base64Converter: 'Base64 转化',
+    cronTool: '定时任务工具',
     regex: '正',
     time: '时',
     color: '色',
     json: '键',
-    image64: '图'
+    image64: '图',
+    cron: '定'
   },
   // Regex Tool
   regex: {
@@ -118,7 +120,53 @@ export const cn = {
     inputBase64Here: '您也可以在这里输入 Base64 码，图片将会显示 👈'
   },
   cron: {
+    yourCronExp: '您的定时任务表达式',
     heresResult: '这里显示结果',
-    expError: '表达式错误'
+    expError: '表达式错误',
+    nextExec: '接下来执行如下的',
+    times: '次',
+    every: '每',
+    at: '在',
+    in: '在',
+    on: '在',
+    from: '从',
+    through: '到',
+    and: '和',
+    of: '的'
+  },
+  cronHelp: {
+    minute: '分钟',
+    hour: '小时',
+    day: '天',
+    month: '月',
+    year: '年',
+    week: '周',
+    dayOfWeekUnit: '周[按周区分的天]',
+    dayOfMonthUnit: '号[按月区分的天]',
+    dayOfMonth: '号',
+    dayOfWeek: '周',
+    sunday: '周日',
+    monday: '周一',
+    tuesday: '周二',
+    wednesday: '周三',
+    thursday: '周四',
+    friday: '周五',
+    saturday: '周六',
+    yearly: '每年',
+    annually: '每年一次',
+    monthly: '每月',
+    daily: '每天',
+    hourly: '每小时',
+    afterReboot: '重启后',
+    optional: '可选',
+    anyValue: '任一值',
+    valueListSeparator: '分隔开的值',
+    rangeOfValues: '范围内的值',
+    stepValues: '阶步值',
+    allowedValues: '允许的值',
+    alternativeSingleValues: '可变的值',
+    nonStandard: '非标准的',
+    notWorkEveryCron: '并非所有定时任务都能生效',
+    expNotComplete: '表达式不完善'
   }
 }

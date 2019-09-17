@@ -20,6 +20,9 @@
           <router-link :to="{name: 'image64-page'}">
             <li :class="{'active': $route.name === 'image64-page'}">{{ $t('sidebar.base64Converter') }}</li>
           </router-link>
+          <router-link :to="{name: 'cron-page'}">
+            <li :class="{'active': $route.name === 'cron-page'}">{{ $t('sidebar.cronTool') }}</li>
+          </router-link>
         </ul>
 
         <div class="lang broadLang">
@@ -49,6 +52,9 @@
           </router-link>
           <router-link :to="{name: 'image64-page'}">
             <li :class="{'active': $route.name === 'image64-page'}">{{ $t('sidebar.image64') }}</li>
+          </router-link>
+          <router-link :to="{name: 'cron-page'}">
+            <li :class="{'active': $route.name === 'cron-page'}">{{ $t('sidebar.cron') }}</li>
           </router-link>
         </ul>
 

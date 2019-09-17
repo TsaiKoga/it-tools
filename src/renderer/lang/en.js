@@ -10,11 +10,13 @@ export const en = {
     colorBox: 'Color Box',
     jsonParser: 'Json Parser',
     base64Converter: 'Base64 Converter',
+    cronTool: 'Crontab Tool',
     regex: 'Regex',
     time: 'Time',
     color: 'Color',
     json: 'Json',
-    image64: 'Image'
+    image64: 'Image',
+    cron: 'Cron'
   },
   // Regex Tool
   regex: {
@@ -120,7 +122,53 @@ export const en = {
   },
   // crontab
   cron: {
+    yourCronExp: 'Your Crontab expression',
     heresResult: 'Here\'s result.',
-    expError: 'Expression error.'
+    expError: 'Expression error.',
+    nextExec: 'Execute like as follow next ',
+    times: 'times',
+    every: 'every',
+    at: 'At',
+    in: 'In',
+    on: 'On',
+    from: 'from',
+    through: 'through',
+    and: 'and',
+    of: 'of'
+  },
+  cronHelp: {
+    minute: 'minute',
+    hour: 'hour',
+    day: 'day',
+    month: 'month',
+    year: 'year',
+    week: 'week',
+    optional: 'optional',
+    dayOfWeekUnit: 'day-of-month',
+    dayOfMonthUnit: 'day-of-month',
+    dayOfMonth: 'day-of-month',
+    dayOfWeek: 'day-of-week',
+    sunday: 'Sunday',
+    monday: 'Monday',
+    tuesday: 'Tuesday',
+    wednesday: 'Wensday',
+    thursday: 'Thursday',
+    friday: 'Friday',
+    saturday: 'Saturday',
+    yearly: 'Yearly',
+    annually: 'Annually',
+    monthly: 'Monthly',
+    daily: 'Daily',
+    hourly: 'Hourly',
+    afterReboot: 'After rebooting',
+    anyValue: 'any value',
+    valueListSeparator: 'value list separator',
+    rangeOfValues: 'range of values',
+    stepValues: 'step values',
+    allowedValues: 'allowed values',
+    alternativeSingleValues: 'alternative single values',
+    nonStandard: 'non-standard',
+    notWorkEveryCron: 'May not work with every cron',
+    expNotComplete: 'The expression is not completed'
   }
 }

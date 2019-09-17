@@ -169,7 +169,7 @@ export default {
         @extend %flex-layout;
       }
       table {
-        width: 45vw;
+        width: 44.5vw;
       }
       table tr {
         height: 3.7vh;

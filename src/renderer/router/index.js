@@ -34,6 +34,11 @@ export default new Router({
       path: '/image64-page',
       name: 'image64-page',
       component: require('@/components/Image64Page').default
+    },
+    {
+      path: '/cron-page',
+      name: 'cron-page',
+      component: require('@/components/CronPage').default
     }
   ]
 })
