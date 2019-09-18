@@ -74,13 +74,21 @@
           </div>
         </div>
 
-        <div class="feature-columns">
+        <div class="feature-columns-less">
           <div class="column">
             <h2>Base64 转化</h2>
             <ul>
               <li>图片转码为 Base64</li>
               <li>Base64 转码为图片</li>
               <li>复制 Base64 码仅需点击</li>
+            </ul>
+          </div>
+          <div class="column">
+            <h2>定时任务工具</h2>
+            <ul>
+              <li>转化定时任务表达式为人类语言</li>
+              <li>展示将要发生的时间</li>
+              <li>友好地提示可输入选项</li>
             </ul>
           </div>
         </div>
@@ -236,6 +244,20 @@ body {
   border-right: 1px solid #CCCCCC;
   width: 25%;
   padding-right: 5px;
+}
+.content .feature-columns-less {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.content .feature-columns-less .column {
+  display: inline-block;
+  border-right: 1px solid #CCCCCC;
+  width: 25%;
+  padding-right: 5px;
+}
+.content .features .column:last-child {
+  border: 0;
 }
 .content .features .column:last-child {
   border: 0;
