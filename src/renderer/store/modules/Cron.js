@@ -213,6 +213,11 @@ const helpers = {
       i18n.t('cronHelp.friday'),
       i18n.t('cronHelp.saturday')
     ]
+    let aliases = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+    let numStr = String(num).toLowerCase()
+    if (aliases.includes(numStr)) {
+      num = aliases.findIndex(x => x === numStr)
+    }
     return dayOfWeek[num]
   },
 
@@ -235,6 +240,13 @@ const helpers = {
       11: 'November',
       12: 'December'
     }
+
+    let aliases = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    let numStr = String(num).toLowerCase()
+    if (aliases.includes(numStr)) {
+      num = aliases.findIndex(x => x === numStr) + 1
+    }
+
     return (i18n.locale === 'en') ? dayOfMonth[num] : (num + i18n.t('cronHelp.month'))
   },
 
