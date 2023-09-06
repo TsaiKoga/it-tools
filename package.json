@@ -28,7 +28,8 @@
   "dependencies": {
     "cron-parser": "^2.13.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.12.0",
+    "process": "^0.11.10",
+    "sass": "^1.66.1",
     "vue": "^2.5.16",
     "vue-clipboard2": "^0.3.0",
     "vue-electron": "^1.0.6",
@@ -58,7 +59,7 @@
     "devtron": "^1.4.0",
     "electron": "^18.3.7",
     "electron-debug": "^1.5.0",
-    "electron-devtools-installer": "^2.2.4",
+    "electron-devtools-installer": "^3.2.0",
     "electron-packager": "^13.1.0",
     "electron-rebuild": "^1.8.1",
     "eslint": "^4.19.1",
